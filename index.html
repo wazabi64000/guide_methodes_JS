@@ -1,1134 +1,431 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<title>Répertoire des Méthodes JavaScript</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
+<meta charset="UTF-8">
+<title>JavaScript Ultime – 53 Méthodes Expliquées (2025)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f5f7fb;
-        margin: 40px;
-        color: #1f2d3d;
+    :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --primary: #2563eb;
+        --text: #1e293b;
+        --gray: #64748b;
+        --code-bg: #0f172a;
+        --comment: #94a3b8;
+        --highlight: #fbbf24;
     }
-
-    h1 {
-        text-align: center;
-        font-size: 28px;
-        margin-bottom: 30px;
-        font-weight: 700;
-        color: #2c3e50;
-    }
-
-    #search {
-        width: 100%;
-        padding: 14px 16px;
-        font-size: 17px;
-        border: 2px solid #d4d9e2;
-        border-radius: 10px;
-        margin-bottom: 28px;
-        background: #ffffff;
-        transition: 0.3s;
-    }
-
-    #search:focus {
-        outline: none;
-        border-color: #2c82c9;
-        box-shadow: 0 0 6px rgba(44, 130, 201, 0.25);
-    }
-
-    table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 15px;
-    }
-
-    thead th {
-        background: #2c3e50;
-        color: #ffffff;
-        text-transform: uppercase;
-        padding: 15px;
-        font-size: 15px;
-        letter-spacing: 0.5px;
-    }
-
-    tbody tr {
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    tbody td {
-        padding: 15px;
-        vertical-align: top;
-        border-top: 1px solid #ecf0f5;
-    }
-
-    tbody td:first-child {
-        font-weight: 600;
-        color: #1d3557;
-        font-size: 16px;
-        width: 18%;
-    }
-
-    .example-block {
-        margin-bottom: 12px;
-    }
-
-    .example-title {
-        font-weight: 600;
-        margin-bottom: 4px;
-        color: #2c3e50;
-    }
-
-    code {
-        display: block;
-        background: #eef1f6;
-        padding: 8px;
-        border-radius: 6px;
-        font-size: 14px;
-        white-space: pre-wrap;
-    }
+    body {font-family: 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%); margin:0; padding:20px; color:var(--text); line-height:1.7;}
+    h1 {text-align:center; font-size:2.8rem; margin:30px 0 10px; color:#1e40af;}
+    h1 + p {text-align:center; font-size:1.3rem; color:#475569; margin-bottom:40px;}
+    #search {width:100%; max-width:900px; margin:20px auto; display:block; padding:20px 28px; font-size:1.3rem; border:4px solid #e2e8f0; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1); transition:0.3s;}
+    #search:focus {outline:none; border-color:var(--primary); box-shadow:0 0 0 6px rgba(37,99,235,0.2);}
+    table {width:100%; max-width:1500px; margin:40px auto; border-collapse:separate; border-spacing:0 24px;}
+    thead th {background:var(--primary); color:white; padding:22px; text-transform:uppercase; letter-spacing:1.5px; font-size:1rem;}
+    tbody tr {background:var(--card); border-radius:20px; box-shadow:0 12px 35px rgba(0,0,0,0.1); transition:0.4s;}
+    tbody tr:hover {transform:translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,0.18);}
+    td {padding:32px; vertical-align:top;}
+    td:first-child {background:linear-gradient(135deg,#dbeafe,#bfdbfe); font-weight:900; font-size:1.5rem; color:#1e40af; width:210px; border-radius:20px 0 0 20px;}
+    .desc {background:#f0f9ff; padding:20px; border-radius:14px; border-left:7px solid var(--primary); margin-bottom:24px; font-size:1.1rem;}
+    .ex {margin:20px 0; background:var(--code-bg); color:#e2e8f0; padding:20px; border-radius:14px; font-family:'Consolas',monospace; overflow-x:auto; line-height:1.5;}
+    .ex-title {display:block; background:var(--primary); color:white; padding:10px 18px; border-radius:10px; font-weight:bold; margin-bottom:14px; font-size:1.05rem;}
+    .c {color:#94a3b8; font-style:italic;}
+    .h {color:#fbbf24; font-weight:bold;}
 </style>
 </head>
-
 <body>
 
-<h1>Répertoire des Méthodes JavaScript</h1>
+<h1>JavaScript Ultime 2025</h1>
+<p>53 méthodes essentielles • 159 exemples commentés • Le mémento parfait pour tous les développeurs</p>
 
-<input type="text" id="search" placeholder="Rechercher une méthode ou un exemple…">
+<input type="text" id="search" placeholder="Rechercher une méthode… (map, reduce, trim, object, async, etc.)">
 
 <table>
-    <thead>
-        <tr>
-            <th>Méthode</th>
-            <th>Description</th>
-            <th>Exemples</th>
-        </tr>
-    </thead>
+<thead><tr><th>Méthode</th><th>Description détaillée</th><th>3 exemples ultra-commentés</th></tr></thead>
+<tbody id="method-list">
 
-    <tbody id="method-list">
-<tr>
-    <td>sort()</td>
-    <td>Trie les éléments d’un tableau selon un ordre donné.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[3,1,2].sort();</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>["b","a","c"].sort();</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const users = [{n:"Paul",a:30},{n:"Anna",a:20}];
-users.sort((x,y) => x.a - y.a);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 1. map() -->
+<tr><td>map()</td><td class="desc">Transforme chaque élément → nouveau tableau de même longueur. Immuable. Indispensable en React/Vue.</td><td>
+<div class="ex"><span class="ex-title">1. Doubler</span><pre>const n = [1,2,3]; const d = n.map(x => x*2); <span class="c">// → [2,4,6]</span></pre></div>
+<div class="ex"><span class="ex-title">2. Extraire noms</span><pre>users.map(u => u.nom); <span class="c">// → ["Alice","Bob"]</span></pre></div>
+<div class="ex"><span class="ex-title">3. HTML React-like</span><pre>items.map((i,idx) => `<li key=${idx}>${i}</li>`);</pre></div>
+</td></tr>
 
-<tr>
-    <td>slice()</td>
-    <td>Retourne une copie partielle d’un tableau ou une chaîne.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2,3,4].slice(1,3);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>"Bonjour".slice(0,4);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const items = [...Array(10).keys()];
-items.slice(-3);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 2. filter() -->
+<tr><td>filter()</td><td class="desc">Ne garde que les éléments où la fonction retourne true. Immuable. Souvent chaîné avec map().</td><td>
+<div class="ex"><span class="ex-title">1. Pairs</span><pre>[1,2,3,4].filter(x => x%2===0); <span class="c">// → [2,4]</span></pre></div>
+<div class="ex"><span class="ex-title">2. Majeurs</span><pre>users.filter(u => u.age >= 18);</pre></div>
+<div class="ex"><span class="ex-title">3. Supprimer falsy</span><pre>arr.filter(Boolean); <span class="c">// magique !</span></pre></div>
+</td></tr>
 
-<tr>
-    <td>trim()</td>
-    <td>Supprime les espaces en début et fin de chaîne.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>"  test  ".trim();</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>["  a "," b "].map(x => x.trim());</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const clean = str => str.trim().replace(/\s+/g," ");
-clean("  Hello    world   ");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 3. reduce() -->
+<tr><td>reduce()</td><td class="desc">La méthode la plus puissante : transforme un tableau en n’importe quoi (somme, objet, chaîne…).</td><td>
+<div class="ex"><span class="ex-title">1. Somme</span><pre>[10,20,30].reduce((a,b)=>a+b, 0); <span class="c">// → 60</span></pre></div>
+<div class="ex"><span class="ex-title">2. Compter</span><pre>votes.reduce((a,v)=>(a[v]=(a[v]||0)+1,a), {});</pre></div>
+<div class="ex"><span class="ex-title">3. Grouper</span><pre>personnes.reduce((g,p)=>{ g[p.ville] ||= []; g[p.ville].push(p); return g; }, {});</pre></div>
+</td></tr>
 
-<tr>
-    <td>map()</td>
-    <td>Transforme chaque élément d’un tableau et retourne un nouveau tableau.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2,3].map(n => n * 2);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>["a","b"].map((c,i) => i + "-" + c);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const users = [{n:"A",points:10},{n:"B",points:20}];
-users.map(u => ({...u,bonus:u.points*0.2}));
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 4. find() -->
+<tr><td>find()</td><td class="desc">Retourne le premier élément qui passe le test (ou undefined). Arrête dès qu’il trouve.</td><td>
+<div class="ex"><span class="ex-title">1. Par ID</span><pre>users.find(u => u.id === 42);</pre></div>
+<div class="ex"><span class="ex-title">2. Premier négatif</span><pre>[10,-5,20].find(x=>x<0); <span class="c">// → -5</span></pre></div>
+<div class="ex"><span class="ex-title">3. Avec fallback</span><pre>findAdmin() || {role:"guest"};</pre></div>
+</td></tr>
 
-<tr>
-    <td>filter()</td>
-    <td>Retourne les éléments d’un tableau qui satisfont une condition.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2,3,4].filter(n => n > 2);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>["test","","ok"].filter(x => x);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const list = [{v:10},{v:0},{v:5}];
-list.filter(o => o.v >= 5);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 5. findIndex() -->
+<tr><td>findIndex()</td><td class="desc">Retourne l’index du premier élément trouvé, ou -1.</td><td>
+<div class="ex"><span class="ex-title">1. Supprimer</span><pre>const i = arr.findIndex(x=>x.id===5); if(i>-1) arr.splice(i,1);</pre></div>
+<div class="ex"><span class="ex-title">2. Mettre à jour</span><pre>const i = users.findIndex(u=>u.id===7); if(i>-1) users[i] = nouveau;</pre></div>
+<div class="ex"><span class="ex-title">3. Existe ?</span><pre>arr.findIndex(x=>x===val) !== -1</pre></div>
+</td></tr>
 
-<tr>
-    <td>reduce()</td>
-    <td>Accumule les valeurs d’un tableau selon une logique donnée.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2,3].reduce((a,b) => a + b, 0);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>["a","b","c"].reduce((s,c) => s + "-" + c);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const cart = [{p:20},{p:10},{p:15}];
-cart.reduce((total, item) => total + item.p, 0);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 6. some() -->
+<tr><td>some()</td><td class="desc">true si au moins un élément passe le test.</td><td>
+<div class="ex"><span class="ex-title">1. Admin ?</span><pre>users.some(u=>u.role==="admin")</pre></div>
+<div class="ex"><span class="ex-title">2. Champ vide</span><pre>inputs.some(i=>!i.value.trim())</pre></div>
+<div class="ex"><span class="ex-title">3. Autorisation</span><pre>roles.some(r=>permissions.includes(r))</pre></div>
+</td></tr>
 
-<tr>
-    <td>forEach()</td>
-    <td>Exécute une fonction sur chaque élément sans retourner de valeur.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2].forEach(n => console.log(n));</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>
-const out = [];
-[1,2,3].forEach(n => out.push(n*2));
-            </code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const users = ["Anna","Paul"];
-users.forEach((u,i) => console.log(i+1, u));
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 7. every() -->
+<tr><td>every()</td><td class="desc">true si TOUS les éléments passent le test.</td><td>
+<div class="ex"><span class="ex-title">1. Tous majeurs</span><pre>users.every(u=>u.age>=18)</pre></div>
+<div class="ex"><span class="ex-title">2. Formulaire valide</span><pre>champs.every(c=>c.validité)</pre></div>
+<div class="ex"><span class="ex-title">3. Tous positifs</span><pre>vals.every(v=>v>0)</pre></div>
+</td></tr>
 
-<tr>
-    <td>find()</td>
-    <td>Retourne le premier élément correspondant à une condition.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,4,6].find(n => n > 3);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>
-["A","B","C"].find(c => c === "B");
-            </code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const users = [{id:1},{id:2},{id:3}];
-users.find(u => u.id === 2);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 8. includes() -->
+<tr><td>includes()</td><td class="desc">Vérifie l’existence (tableau ou chaîne). Plus lisible que indexOf.</td><td>
+<div class="ex"><span class="ex-title">1. Rôle</span><pre>if(roles.includes("admin"))</pre></div>
+<div class="ex"><span class="ex-title">2. Email @</span><pre>email.includes("@")</pre></div>
+<div class="ex"><span class="ex-title">3. Extension</span><pre>["jpg","png"].includes(ext)</pre></div>
+</td></tr>
 
-<tr>
-    <td>includes()</td>
-    <td>Vérifie si un tableau ou une chaîne contient une valeur.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>[1,2,3].includes(2);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>"bonjour".includes("jour");</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const keys = ["admin","user","guest"];
-keys.includes("admin");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 9. forEach() -->
+<tr><td>forEach()</td><td class="desc">Exécute une action pour chaque élément. Pas de retour.</td><td>
+<div class="ex"><span class="ex-title">1. Console</span><pre>users.forEach(u=>console.log(u.nom))</pre></div>
+<div class="ex"><span class="ex-title">2. DOM</span><pre>els.forEach(el=>el.classList.add("active"))</pre></div>
+<div class="ex"><span class="ex-title">3. Set</span><pre>const s=new Set(); arr.forEach(x=>s.add(x))</pre></div>
+</td></tr>
 
-<tr>
-    <td>push()</td>
-    <td>Ajoute un élément à la fin d’un tableau.</td>
-    <td>
-        <div class="example-block">
-            <div class="example-title">Simple :</div>
-            <code>const a=[1]; a.push(2);</code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Intermédiaire :</div>
-            <code>
-const list=[1,2];
-[3,4].forEach(n => list.push(n));
-            </code>
-        </div>
-        <div class="example-block">
-            <div class="example-title">Avancé :</div>
-            <code>
-const users=[];
-const addUser = name => users.push({name});
-addUser("Paul");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 10. sort() -->
+<tr><td>sort()</td><td class="desc">Trie EN PLACE. Toujours fournir une fonction pour les nombres !</td><td>
+<div class="ex"><span class="ex-title">1. Nombres</span><pre>nums.sort((a,b)=>a-b)</pre></div>
+<div class="ex"><span class="ex-title">2. Avec accents</span><pre>mots.sort((a,b)=>a.localeCompare(b))</pre></div>
+<div class="ex"><span class="ex-title">3. Objets décroissant</span><pre>users.sort((a,b)=>b.score-a.score)</pre></div>
+</td></tr>
 
+<!-- 11. slice() -->
+<tr><td>slice()</td><td class="desc">Copie partielle (immuable). Indices négatifs = depuis la fin.</td><td>
+<div class="ex"><span class="ex-title">1. Derniers 5</span><pre>arr.slice(-5)</pre></div>
+<div class="ex"><span class="ex-title">2. Clone</span><pre>const copie = arr.slice()</pre></div>
+<div class="ex"><span class="ex-title">3. Sous-chaîne</span><pre>str.slice(0,10)</pre></div>
+</td></tr>
 
+<!-- 12. splice() -->
+<tr><td>splice()</td><td class="desc">Modifie en place : supprime/remplace/ajoute.</td><td>
+<div class="ex"><span class="ex-title">1. Supprimer</span><pre>arr.splice(2,3)</pre></div>
+<div class="ex"><span class="ex-title">2. Insérer</span><pre>arr.splice(1,0,"nouveau")</pre></div>
+<div class="ex"><span class="ex-title">3. Remplacer</span><pre>arr.splice(1,2,"A","B")</pre></div>
+</td></tr>
 
+<!-- 13. push() / pop() -->
+<tr><td>push()<br>pop()</td><td class="desc">Pile LIFO (Last In First Out).</td><td>
+<div class="ex"><span class="ex-title">1. Pile</span><pre>p.push(1); const x=p.pop()</pre></div>
+<div class="ex"><span class="ex-title">2. Undo</span><pre>historique.push(état); état=historique.pop()</pre></div>
+<div class="ex"><span class="ex-title">3. Vider</span><pre>while(p.length) p.pop()</pre></div>
+</td></tr>
 
-<tr>
-    <td>pop()</td>
-    <td>Supprime et retourne le dernier élément d’un tableau.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].pop();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-const a=[5,6,7];
-const last=a.pop();
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const stack=[1,2,3];
-while(stack.length) stack.pop();
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 14. unshift() / shift() -->
+<tr><td>unshift()<br>shift()</td><td class="desc">File FIFO (First In First Out).</td><td>
+<div class="ex"><span class="ex-title">1. File</span><pre>file.unshift(tâche); traiter(file.shift())</pre></div>
+<div class="ex"><span class="ex-title">2. Priorité</span><pre>file.unshift(tâcheUrgente)</pre></div>
+<div class="ex"><span class="ex-title">3. Batch</span><pre>while(file.length) traiter(file.shift())</pre></div>
+</td></tr>
 
-<tr>
-    <td>shift()</td>
-    <td>Supprime et retourne le premier élément du tableau.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].shift();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-const q=[10,20,30];
-const first=q.shift();
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const queue=[1,2,3];
-while(queue.length) queue.shift();
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 15. concat() -->
+<tr><td>concat()</td><td class="desc">Fusionne (immuable). Préférer spread en 2025.</td><td>
+<div class="ex"><span class="ex-title">1. Fusion</span><pre>a.concat(b,c)</pre></div>
+<div class="ex"><span class="ex-title">2. Ajout</span><pre>arr.concat(nouveau)</pre></div>
+<div class="ex"><span class="ex-title">3. Spread</span><pre>[...a,...b,extra]</pre></div>
+</td></tr>
 
-<tr>
-    <td>unshift()</td>
-    <td>Ajoute un ou plusieurs éléments au début.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[2,3].unshift(1);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-const a=[3,4];
-a.unshift(1,2);
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const events=[];
-events.unshift({type:"click",t:Date.now()});
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 16. join() -->
+<tr><td>join()</td><td class="desc">Tableau → chaîne avec séparateur.</td><td>
+<div class="ex"><span class="ex-title">1. CSV</span><pre>ligne.join(",")</pre></div>
+<div class="ex"><span class="ex-title">2. Chemin</span><pre>["home","user"].join("/")</pre></div>
+<div class="ex"><span class="ex-title">3. Query</span><pre>params.join("&")</pre></div>
+</td></tr>
 
-<tr>
-    <td>splice()</td>
-    <td>Supprime, remplace ou ajoute des éléments dans un tableau.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].splice(1,1);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-const a=[1,2,3,4];
-a.splice(2,0,"X");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const items=["a","b","c"];
-items.splice(1,1,"new","value");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 17. reverse() -->
+<tr><td>reverse()</td><td class="desc">Inverse en place.</td><td>
+<div class="ex"><span class="ex-title">1. Tableau</span><pre>arr.reverse()</pre></div>
+<div class="ex"><span class="ex-title">2. Palindrome</span><pre>str.split("").reverse().join("")</pre></div>
+<div class="ex"><span class="ex-title">3. Messages récents</span><pre>messages.reverse()</pre></div>
+</td></tr>
 
-<tr>
-    <td>concat()</td>
-    <td>Fusionne des tableaux ou des chaînes.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2].concat([3,4]);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-"Hello ".concat("World");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const all=[...a1.concat(a2).concat(a3)];
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 18. indexOf() / lastIndexOf() -->
+<tr><td>indexOf()<br>lastIndexOf()</td><td class="desc">Recherche d’index (-1 si absent).</td><td>
+<div class="ex"><span class="ex-title">1. Existe</span><pre>arr.indexOf(val) !== -1</pre></div>
+<div class="ex"><span class="ex-title">2. Dernier /</span><pre>url.lastIndexOf("/")</pre></div>
+<div class="ex"><span class="ex-title">3. Remplacer première</span><pre>str.indexOf("vieux")</pre></div>
+</td></tr>
 
-<tr>
-    <td>join()</td>
-    <td>Convertit un tableau en chaîne avec un séparateur.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].join("-");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-["a","b","c"].join("");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const path=["usr","local","bin"];
-path.join("/");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 19. flat() -->
+<tr><td>flat()</td><td class="desc">Aplatit les sous-tableaux.</td><td>
+<div class="ex"><span class="ex-title">1. Niveau 1</span><pre>[1,[2,[3]]].flat()</pre></div>
+<div class="ex"><span class="ex-title">2. Tout</span><pre>nested.flat(Infinity)</pre></div>
+<div class="ex"><span class="ex-title">3. Nettoyer trous</span><pre>[1,,2].flat()</pre></div>
+</td></tr>
 
-<tr>
-    <td>reverse()</td>
-    <td>Inverse l’ordre des éléments d’un tableau.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].reverse();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-"abc".split("").reverse().join("");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const logs=[3,2,1];
-const sorted=logs.reverse().map(x=>x*x);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 20. flatMap() -->
+<tr><td>flatMap()</td><td class="desc">map() + flat(1) en une passe (performant).</td><td>
+<div class="ex"><span class="ex-title">1. Split mots</span><pre>phrases.flatMap(p=>p.split(" "))</pre></div>
+<div class="ex"><span class="ex-title">2. Dupliquer</span><pre>[1,2].flatMap(x=>[x,x*10])</pre></div>
+<div class="ex"><span class="ex-title">3. Tags</span><pre>users.flatMap(u=>u.tags)</pre></div>
+</td></tr>
 
-<tr>
-    <td>indexOf()</td>
-    <td>Retourne l’indice de la première occurrence.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].indexOf(2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-"banana".indexOf("na");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const keys=["id","name","age"];
-keys.indexOf("age");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 21. at() -->
+<tr><td>at()</td><td class="desc">Accès avec indices négatifs (ES2022).</td><td>
+<div class="ex"><span class="ex-title">1. Dernier</span><pre>arr.at(-1)</pre></div>
+<div class="ex"><span class="ex-title">2. Avant-dernier</span><pre>arr.at(-2)</pre></div>
+<div class="ex"><span class="ex-title">3. Chaîne</span><pre>"abc".at(-1) <span class="c">// "c"</span></pre></div>
+</td></tr>
 
-<tr>
-    <td>lastIndexOf()</td>
-    <td>Retourne la dernière occurrence dans un tableau ou une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,2,3].lastIndexOf(2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-"banana".lastIndexOf("na");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const nums=[5,7,5,9];
-nums.lastIndexOf(5);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 22. fill() -->
+<tr><td>fill()</td><td class="desc">Remplit en place avec une valeur.</td><td>
+<div class="ex"><span class="ex-title">1. Zéros</span><pre>new Array(10).fill(0)</pre></div>
+<div class="ex"><span class="ex-title">2. Portion</span><pre>arr.fill("x",2,5)</pre></div>
+<div class="ex"><span class="ex-title">3. Réinitialiser</span><pre>arr.fill(null)</pre></div>
+</td></tr>
 
-<tr>
-    <td>includes()</td>
-    <td>Indique si un tableau contient une valeur donnée.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].includes(3);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>
-"javascript".includes("script");
-            </code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const permissions=["read","write"];
-permissions.includes("write");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 23. Array.from() -->
+<tr><td>Array.from()</td><td class="desc">Crée un tableau depuis itérable/array-like + map optionnel.</td><td>
+<div class="ex"><span class="ex-title">1. Set</span><pre>Array.from(monSet)</pre></div>
+<div class="ex"><span class="ex-title">2. NodeList</span><pre>Array.from(document.querySelectorAll("div"))</pre></div>
+<div class="ex"><span class="ex-title">3. Avec map</span><pre>Array.from([1,2,3],x=>x*x)</pre></div>
+</td></tr>
 
-<tr>
-    <td>flat()</td>
-    <td>Aplati les sous-tableaux selon un niveau donné.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,[2,3]].flat();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>[1,[2,[3]]].flat(2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const arr=[1,[2],[3,[4]]];
-arr.flat(Infinity);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 24. Array.of() -->
+<tr><td>Array.of()</td><td class="desc">Crée un tableau sans surprise (new Array(7) = 7 trous).</td><td>
+<div class="ex"><span class="ex-title">1. Correct</span><pre>Array.of(7) <span class="c">// [7]</span></pre></div>
+<div class="ex"><span class="ex-title">2. Plusieurs</span><pre>Array.of(1,2,3)</pre></div>
+<div class="ex"><span class="ex-title">3. Vs new Array</span><pre>new Array(5) <span class="c">// [,,,,,]</span></pre></div>
+</td></tr>
 
-<tr>
-    <td>flatMap()</td>
-    <td>Map + flat en un seul passage.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2].flatMap(x => [x,x*2]);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>["a","b"].flatMap(c => [c.toUpperCase(),c]);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const users=[{id:1,tags:["js","html"]},{id:2,tags:["css"]}];
-users.flatMap(u => u.tags);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 25. entries() / keys() / values() -->
+<tr><td>entries()<br>keys()<br>values()</td><td class="desc">Itérateurs sur index/valeurs.</td><td>
+<div class="ex"><span class="ex-title">1. Avec index</span><pre>for(const [i,v] of arr.entries()) {}</pre></div>
+<div class="ex"><span class="ex-title">2. Keys</span><pre>[...arr.keys()]</pre></div>
+<div class="ex"><span class="ex-title">3. Values</span><pre>[...arr.values()]</pre></div>
+</td></tr>
 
-<tr>
-    <td>split()</td>
-    <td>Divise une chaîne selon un séparateur.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"a-b-c".split("-");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"hello world".split(" ");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-"1,2;3|4".split(/[,;|]/);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 26. trim() / trimStart() / trimEnd() -->
+<tr><td>trim()<br>trimStart()<br>trimEnd()</td><td class="desc">Supprime espaces Unicode.</td><td>
+<div class="ex"><span class="ex-title">1. Saisie</span><pre>input.value.trim()</pre></div>
+<div class="ex"><span class="ex-title">2. Début</span><pre>"   hi".trimStart()</pre></div>
+<div class="ex"><span class="ex-title">3. Tableau</span><pre>arr.map(s=>s.trim())</pre></div>
+</td></tr>
 
-<tr>
-    <td>replace()</td>
-    <td>Remplace la première occurrence dans une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"abc".replace("a","x");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"Hello Bob".replace("Bob","Alice");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-"2025-11-18".replace(/-/,"/");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 27. startsWith() / endsWith() -->
+<tr><td>startsWith()<br>endsWith()</td><td class="desc">Teste début/fin de chaîne.</td><td>
+<div class="ex"><span class="ex-title">1. HTTPS</span><pre>url.startsWith("https://")</pre></div>
+<div class="ex"><span class="ex-title">2. Extension</span><pre>file.endsWith(".pdf")</pre></div>
+<div class="ex"><span class="ex-title">3. Préfixe</span><pre>id.startsWith("admin_")</pre></div>
+</td></tr>
 
-<tr>
-    <td>replaceAll()</td>
-    <td>Remplace toutes les occurrences dans une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"aaa".replaceAll("a","b");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"test test".replaceAll("t","T");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-"10-20-30".replaceAll(/-/g,":");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 28. padStart() / padEnd() -->
+<tr><td>padStart()<br>padEnd()</td><td class="desc">Complète jusqu’à longueur cible.</td><td>
+<div class="ex"><span class="ex-title">1. Zéros</span><pre>id.toString().padStart(6,"0")</pre></div>
+<div class="ex"><span class="ex-title">2. Alignement</span><pre>nom.padEnd(15," ")</pre></div>
+<div class="ex"><span class="ex-title">3. Masquage</span><pre>card.slice(-4).padStart(16,"*")</pre></div>
+</td></tr>
 
-<tr>
-    <td>startsWith()</td>
-    <td>Vérifie si une chaîne commence par un motif.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"abc".startsWith("a");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"bonjour".startsWith("bon");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const url="https://site.com";
-url.startsWith("https");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 29. repeat() -->
+<tr><td>repeat()</td><td class="desc">Répète une chaîne n fois.</td><td>
+<div class="ex"><span class="ex-title">1. Ligne</span><pre>"─".repeat(60)</pre></div>
+<div class="ex"><span class="ex-title">2. Espace</span><pre>" ".repeat(niveau)</pre></div>
+<div class="ex"><span class="ex-title">3. Test</span><pre>"abc".repeat(3)</pre></div>
+</td></tr>
 
-<tr>
-    <td>endsWith()</td>
-    <td>Vérifie si une chaîne se termine par un motif.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"abc".endsWith("c");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"photo.jpg".endsWith(".jpg");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const token="user-12345";
-token.endsWith("12345");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 30. replace() / replaceAll() -->
+<tr><td>replace()<br>replaceAll()</td><td class="desc">Remplacement (première ou toutes).</td><td>
+<div class="ex"><span class="ex-title">1. Espace multiple</span><pre>str.replaceAll(/\s+/g," ")</pre></div>
+<div class="ex"><span class="ex-title">2. Avec fonction</span><pre>str.replace(/\d+/g, n=>n*2)</pre></div>
+<div class="ex"><span class="ex-title">3. Supprimer accents</span><pre>str.normalize("NFD").replace(/[\u0300-\u036f]/g,"")</pre></div>
+</td></tr>
 
-<tr>
-    <td>padStart()</td>
-    <td>Ajoute des caractères au début d’une chaîne jusqu’à atteindre une longueur donnée.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"5".padStart(3,"0");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"42".padStart(5,".");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const id=12;
-String(id).padStart(6,"0");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 31. split() -->
+<tr><td>split()</td><td class="desc">Chaîne → tableau.</td><td>
+<div class="ex"><span class="ex-title">1. Multi-séparateurs</span><pre>ligne.split(/[,;|\t]/)</pre></div>
+<div class="ex"><span class="ex-title">2. Limite</span><pre>"a,b,c,d".split(",",3)</pre></div>
+<div class="ex"><span class="ex-title">3. URL</span><pre>url.split("/").filter(Boolean)</pre></div>
+</td></tr>
 
-<tr>
-    <td>padEnd()</td>
-    <td>Ajoute des caractères à la fin d’une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"5".padEnd(3,"0");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"JS".padEnd(6,"*");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const name="Paul";
-name.padEnd(10," ");
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 32. toUpperCase() / toLowerCase() -->
+<tr><td>toUpperCase()<br>toLowerCase()</td><td class="desc">Conversion de casse.</td><td>
+<div class="ex"><span class="ex-title">1. Recherche</span><pre>a.toLowerCase().includes(b.toLowerCase())</pre></div>
+<div class="ex"><span class="ex-title">2. Email</span><pre>email.toLowerCase()</pre></div>
+<div class="ex"><span class="ex-title">3. Slug</span><pre>titre.toLowerCase().replace(/\s+/g,"-")</pre></div>
+</td></tr>
 
-<tr>
-    <td>repeat()</td>
-    <td>Répète une chaîne selon un nombre donné.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"ha".repeat(3);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"*".repeat(10);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-            <code>
-const banner="-".repeat(50);
-            </code>
-        </div>
-    </td>
-</tr>
+<!-- 33. localeCompare() -->
+<tr><td>localeCompare()</td><td class="desc">Comparaison respectant les accents.</td><td>
+<div class="ex"><span class="ex-title">1. Tri français</span><pre>mots.sort((a,b)=>a.localeCompare(b,"fr"))</pre></div>
+<div class="ex"><span class="ex-title">2. Égalité</span><pre>"é".localeCompare("e","fr")</pre></div>
+<div class="ex"><span class="ex-title">3. Custom sort</span><pre>users.sort((a,b)=>a.nom.localeCompare(b.nom,"fr"))</pre></div>
+</td></tr>
 
-      <tr>
-    <td>charAt()</td>
-    <td>Retourne le caractère à un index donné.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"Hello".charAt(1);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"Bonjour".charAt("Bonjour".length - 1);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-function safeChar(str,i){ return str.charAt(i) || ""; }
-safeChar("Test",50);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 34. charAt() / charCodeAt() -->
+<tr><td>charAt()<br>charCodeAt()</td><td class="desc">Accès caractère et code.</td><td>
+<div class="ex"><span class="ex-title">1. Premier</span><pre>str.charAt(0)</pre></div>
+<div class="ex"><span class="ex-title">2. Code</span><pre>"A".charCodeAt(0) <span class="c">// 65</span></pre></div>
+<div class="ex"><span class="ex-title">3. Safe</span><pre>str.charAt(i) || ""</pre></div>
+</td></tr>
 
-<tr>
-    <td>charCodeAt()</td>
-    <td>Retourne le code UTF-16 du caractère.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"A".charCodeAt(0);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"abc".charCodeAt(2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-"AZ".split("").map(l => l.charCodeAt(0));
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 35. String.fromCharCode() -->
+<tr><td>fromCharCode()</td><td class="desc">Code → caractère.</td><td>
+<div class="ex"><span class="ex-title">1. A</span><pre>String.fromCharCode(65)</pre></div>
+<div class="ex"><span class="ex-title">2. Hello</span><pre>String.fromCharCode(72,101,108,108,111)</pre></div>
+<div class="ex"><span class="ex-title">3. Avec map</span><pre>[65,66].map(String.fromCharCode).join("")</pre></div>
+</td></tr>
 
-<tr>
-    <td>fromCharCode()</td>
-    <td>Convertit des codes UTF-16 en caractères.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>String.fromCharCode(65);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>String.fromCharCode(72,101,108,108,111);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-[65,66,67].map(c => String.fromCharCode(c)).join("");
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 36. match() / matchAll() -->
+<tr><td>match()<br>matchAll()</td><td class="desc">Recherche regex.</td><td>
+<div class="ex"><span class="ex-title">1. Hashtags</span><pre>[...text.matchAll(/#(\w+)/g)]</pre></div>
+<div class="ex"><span class="ex-title">2. Emails</span><pre>text.match(/[\w.-]+@[\w.-]+\.\w+/g)</pre></div>
+<div class="ex"><span class="ex-title">3. Groupes</span><pre>[...str.matchAll(/(\d+)-(\w+)/g)]</pre></div>
+</td></tr>
 
-<tr>
-    <td>localeCompare()</td>
-    <td>Compare deux chaînes selon la locale.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"a".localeCompare("b");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"école".localeCompare("ecole","fr");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["z","é","a"].sort((a,b)=>a.localeCompare(b,"fr"));
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 37. parseInt() / parseFloat() -->
+<tr><td>parseInt()<br>parseFloat()</td><td class="desc">Chaîne → nombre.</td><td>
+<div class="ex"><span class="ex-title">1. px</span><pre>parseInt("42px") <span class="c">// 42</span></pre></div>
+<div class="ex"><span class="ex-title">2. Binaire</span><pre>parseInt("1010",2)</pre></div>
+<div class="ex"><span class="ex-title">3. Tableau</span><pre>["10","20px"].map(parseInt)</pre></div>
+</td></tr>
 
-<tr>
-    <td>match()</td>
-    <td>Retourne les correspondances d’une expression régulière.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"abc123".match(/[0-9]/);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"hello 2025".match(/\d+/);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-"js-html-css".match(/[a-z]+/g);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 38. Number() et + -->
+<tr><td>Number()<br>+ unaire</td><td class="desc">Conversion rapide en nombre.</td><td>
+<div class="ex"><span class="ex-title">1. Rapide</span><pre>+"42.5" <span class="c">// 42.5</span></pre></div>
+<div class="ex"><span class="ex-title">2. Safe</span><pre>Number(str) || 0</pre></div>
+<div class="ex"><span class="ex-title">3. Boolean</span><pre>+true <span class="c">// 1</span></pre></div>
+</td></tr>
 
-<tr>
-    <td>matchAll()</td>
-    <td>Retourne un itérateur de toutes les correspondances.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-<code>[... "a1b2".matchAll(/\d/)];
-</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-<code>
-[..."ab12cd34".matchAll(/\d+/g)];
-</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-const reg=/([a-z]+)(\d+)/g;
-[..."js12css34".matchAll(reg)];
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 39. toFixed() -->
+<tr><td>toFixed()</td><td class="desc">Formate avec décimales (retourne string !).</td><td>
+<div class="ex"><span class="ex-title">1. Prix</span><pre>prix.toFixed(2) <span class="c">// "19.99"</span></pre></div>
+<div class="ex"><span class="ex-title">2. Pourcentage</span><pre>(0.876).toFixed(2) <span class="c">// "0.88"</span></pre></div>
+<div class="ex"><span class="ex-title">3. Sans arrondi</span><pre>Number(prix.toFixed(2))</pre></div>
+</td></tr>
 
-<tr>
-    <td>search()</td>
-    <td>Retourne l’index de la première correspondance.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"hello".search(/e/);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"javascript".search(/script/);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-"file-2025-version".search(/\d{4}/);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 40. Math.max() / Math.min() -->
+<tr><td>Math.max()<br>Math.min()</td><td class="desc">Avec spread pour tableaux.</td><td>
+<div class="ex"><span class="ex-title">1. Max</span><pre>Math.max(...nums)</pre></div>
+<div class="ex"><span class="ex-title">2. Min</span><pre>Math.min(...prix)</pre></div>
+<div class="ex"><span class="ex-title">3. Sans spread (ancien)</span><pre>Math.max.apply(null,arr)</pre></div>
+</td></tr>
 
-<tr>
-    <td>concat()</td>
-    <td>Fusionne des chaînes ou tableaux.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2].concat([3]);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"Hello".concat(" ","World");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-const base=[1,2];
-const extra=[3,4];
-base.concat(extra,["x"]);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 41. Object.keys() / values() / entries() -->
+<tr><td>Object.keys()<br>values()<br>entries()</td><td class="desc">Parcourt un objet.</td><td>
+<div class="ex"><span class="ex-title">1. Keys</span><pre>Object.keys(user)</pre></div>
+<div class="ex"><span class="ex-title">2. Entries</span><pre>Object.entries(user) <span class="c">// [["nom","Alice"],...]</span></pre></div>
+<div class="ex"><span class="ex-title">3. Boucle</span><pre>for(const [k,v] of Object.entries(obj))</pre></div>
+</td></tr>
 
-<tr>
-    <td>reduceRight()</td>
-    <td>Équivaut à reduce mais de droite à gauche.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-<code>[1,2,3].reduceRight((a,b)=>a+b);
-</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-<code>
-["a","b","c"].reduceRight((a,b)=>a+b);
-</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-[[1],[2],[3]].reduceRight((acc,v)=>acc.concat(v),[]);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 42. Object.assign() -->
+<tr><td>Object.assign()</td><td class="desc">Fusion superficielle d’objets.</td><td>
+<div class="ex"><span class="ex-title">1. Fusion</span><pre>Object.assign({}, defaults, options)</pre></div>
+<div class="ex"><span class="ex-title">2. Clone</span><pre>const clone = Object.assign({}, obj)</pre></div>
+<div class="ex"><span class="ex-title">3. Spread (moderne)</span><pre>{...obj, nouveau:1}</pre></div>
+</td></tr>
 
-<tr>
-    <td>every()</td>
-    <td>Vérifie si tous les éléments respectent une condition.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[2,4,6].every(n=>n%2===0);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>["a","b"].every(x=>typeof x==="string");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-const users=[{admin:true},{admin:false}];
-users.every(u=>u.admin===true);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 43. structuredClone() -->
+<tr><td>structuredClone()</td><td class="desc">Clone profond (ES2022+).</td><td>
+<div class="ex"><span class="ex-title">1. Clone</span><pre>const copie = structuredClone(data)</pre></div>
+<div class="ex"><span class="ex-title">2. Web Workers</span><pre>postMessage(structuredClone(obj))</pre></div>
+<div class="ex"><span class="ex-title">3. Ancienne méthode</span><pre>JSON.parse(JSON.stringify(obj)) <span class="c">// perd Date, functions...</span></pre></div>
+</td></tr>
 
-<tr>
-    <td>some()</td>
-    <td>Vérifie si au moins un élément respecte une condition.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,3,5].some(n=>n%2===0);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>["a",2,"c"].some(x=>typeof x==="number");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-const users=[{role:"user"},{role:"admin"}];
-users.some(u=>u.role==="admin");
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 44. JSON.parse() / stringify() -->
+<tr><td>JSON.parse()<br>stringify()</td><td class="desc">Sérialisation JSON.</td><td>
+<div class="ex"><span class="ex-title">1. Clone (limité)</span><pre>JSON.parse(JSON.stringify(obj))</pre></div>
+<div class="ex"><span class="ex-title">2. LocalStorage</span><pre>localStorage.setItem("data", JSON.stringify(data))</pre></div>
+<div class="ex"><span class="ex-title">3. Pretty</span><pre>JSON.stringify(obj,null,2)</pre></div>
+</td></tr>
 
-<tr>
-    <td>fill()</td>
-    <td>Remplit un tableau par une valeur.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>new Array(3).fill(0);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>[1,2,3,4].fill("x",1,3);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-Array(5).fill().map((_,i)=>i+1);
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 45. Set -->
+<tr><td>Set</td><td class="desc">Collection sans doublons.</td><td>
+<div class="ex"><span class="ex-title">1. Unique</span><pre>new Set(arr)</pre></div>
+<div class="ex"><span class="ex-title">2. Ajout</span><pre>set.add("js")</pre></div>
+<div class="ex"><span class="ex-title">3. Tableau</span><pre>[...set]</pre></div>
+</td></tr>
 
-<tr>
-    <td>includes()</td>
-    <td>Vérifie si une valeur est présente dans un tableau ou une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>[1,2,3].includes(2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"javascript".includes("script");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-const roles=["user","manager","admin"];
-roles.includes("admin");
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 46. Map -->
+<tr><td>Map</td><td class="desc">Clé/valeur avec n’importe quelle clé.</td><td>
+<div class="ex"><span class="ex-title">1. Objet comme clé</span><pre>map.set(obj, "valeur")</pre></div>
+<div class="ex"><span class="ex-title">2. Récupérer</span><pre>map.get(obj)</pre></div>
+<div class="ex"><span class="ex-title">3. Itérer</span><pre>for(const [k,v] of map)</pre></div>
+</td></tr>
 
-<tr>
-    <td>toUpperCase()</td>
-    <td>Convertit une chaîne en majuscules.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"hello".toUpperCase();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"école".toUpperCase();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["js","css","html"].map(s=>s.toUpperCase());
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 47. Promise.all() -->
+<tr><td>Promise.all()</td><td class="desc">Attend plusieurs promesses.</td><td>
+<div class="ex"><span class="ex-title">1. Parallèle</span><pre>await Promise.all([p1,p2,p3])</pre></div>
+<div class="ex"><span class="ex-title">2. Avec map</span><pre>await Promise.all(urls.map(fetch))</pre></div>
+<div class="ex"><span class="ex-title">3. Timeout</span><pre>Promise.race([promise, timeout(5000)])</pre></div>
+</td></tr>
 
-<tr>
-    <td>toLowerCase()</td>
-    <td>Convertit une chaîne en minuscules.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"HELLO".toLowerCase();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"ÉCOLE".toLowerCase();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["JS","CSS","HTML"].map(s=>s.toLowerCase());
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 48. async / await -->
+<tr><td>async<br>await</td><td class="desc">Syntaxe moderne pour les promesses.</td><td>
+<div class="ex"><span class="ex-title">1. Fetch</span><pre>const res = await fetch(url); const data = await res.json();</pre></div>
+<div class="ex"><span class="ex-title">2. Try/catch</span><pre>try { await op(); } catch(e) { erreur(e); }</pre></div>
+<div class="ex"><span class="ex-title">3. Parallèle</span><pre>const [a,b] = await Promise.all([op1(),op2()])</pre></div>
+</td></tr>
 
-<tr>
-    <td>trim()</td>
-    <td>Supprime les espaces inutiles autour d’une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"  test  ".trim();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"   hello world".trim();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-[" a "," b "," c "].map(s=>s.trim());
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 49. Optional Chaining (?.) -->
+<tr><td>?.</td><td class="desc">Accès sécurisé sans erreur.</td><td>
+<div class="ex"><span class="ex-title">1. Profond</span><pre>user?.profile?.name</pre></div>
+<div class="ex"><span class="ex-title">2. Fonction</span><pre>obj?.method?.()</pre></div>
+<div class="ex"><span class="ex-title">3. Tableau</span><pre>arr?.[0]</pre></div>
+</td></tr>
 
-<tr>
-    <td>trimStart()</td>
-    <td>Supprime uniquement les espaces au début.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"   test".trimStart();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"   hello  ".trimStart();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["  js","  css"].map(s=>s.trimStart());
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 50. Nullish Coalescing (??) -->
+<tr><td>??</td><td class="desc">Fallback seulement sur null/undefined.</td><td>
+<div class="ex"><span class="ex-title">1. Valeur</span><pre>const nom = user.nom ?? "Anonyme"</pre></div>
+<div class="ex"><span class="ex-title">2. Vs ||</span><pre>valeur ?? 0 <span class="c">// || donnerait false aussi</span></pre></div>
+<div class="ex"><span class="ex-title">3. Chaîne vide</span><pre>input.value ?? ""</pre></div>
+</td></tr>
 
-<tr>
-    <td>trimEnd()</td>
-    <td>Supprime les espaces à la fin d’une chaîne.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-            <code>"test   ".trimEnd();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-            <code>"hello   ".trimEnd();</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["js  ","css  "].map(s=>s.trimEnd());
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 51. Spread (...) -->
+<tr><td>Spread</td><td class="desc">Décomposer tableau/objet.</td><td>
+<div class="ex"><span class="ex-title">1. Copie</span><pre>const copie = [...arr]</pre></div>
+<div class="ex"><span class="ex-title">2. Fusion</span><pre>{...a, ...b}</pre></div>
+<div class="ex"><span class="ex-title">3. Arguments</span><pre>Math.max(...nums)</pre></div>
+</td></tr>
 
-<tr>
-    <td>parseInt()</td>
-    <td>Convertit une chaîne en entier.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-<code>parseInt("42");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-<code>parseInt("1010",2);</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["10","20px","30.9"].map(v=>parseInt(v));
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 52. Destructuring -->
+<tr><td>{} []</td><td class="desc">Extraire proprement.</td><td>
+<div class="ex"><span class="ex-title">1. Objet</span><pre>const {nom, age} = user</pre></div>
+<div class="ex"><span class="ex-title">2. Tableau</span><pre>const [premier,,trois] = arr</pre></div>
+<div class="ex"><span class="ex-title">3. Reste</span><pre>const [a,...reste] = arr</pre></div>
+</td></tr>
 
-<tr>
-    <td>parseFloat()</td>
-    <td>Convertit une chaîne en nombre décimal.</td>
-    <td>
-        <div class="example-block"><div class="example-title">Simple :</div>
-<code>parseFloat("3.14");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Intermédiaire :</div>
-<code>parseFloat("42.55px");</code>
-        </div>
-        <div class="example-block"><div class="example-title">Avancé :</div>
-<code>
-["1.1","2.2","3.33px"].map(v=>parseFloat(v));
-</code>
-        </div>
-    </td>
-</tr>
+<!-- 53. Template Literals (`) -->
+<tr><td>` `</td><td class="desc">Chaînes avec variables et multi-lignes.</td><td>
+<div class="ex"><span class="ex-title">1. Interpolation</span><pre>`Bonjour ${nom} !`</pre></div>
+<div class="ex"><span class="ex-title">2. HTML</span><pre>const html = `<div>${content}</div>`</pre></div>
+<div class="ex"><span class="ex-title">3. Expression</span><pre>`Total: ${a+b} €`</pre></div>
+</td></tr>
 
-      
-      
-    </tbody>
+</tbody>
 </table>
 
 <script>
-document.getElementById("search").addEventListener("input", function () {
-    const filter = this.value.toLowerCase();
-    const rows = document.querySelectorAll("#method-list tr");
-
-    rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(filter) ? "" : "none";
+document.getElementById("search").addEventListener("input", function() {
+    const term = this.value.toLowerCase().trim();
+    document.querySelectorAll("#method-list tr").forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
     });
 });
+document.getElementById("search").focus();
 </script>
-
 </body>
 </html>
