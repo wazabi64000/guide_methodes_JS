@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Méthodes JavaScript - 60</title>
+<style>
+  table {border-collapse: collapse; width: 100%;}
+  th, td {border: 1px solid #ccc; padding: 6px; text-align: left; font-size: 14px;}
+  th {background-color: #f4f4f4;}
+  td code {white-space: pre-wrap;}
+</style>
+</head>
+<body>
+<h2>60 Méthodes JavaScript Courantes</h2>
+<table>
+  <tr>
+    <th>Méthode</th>
+    <th>Description</th>
+    <th>Exemple</th>
+  </tr>
+  <tr><td>sort()</td><td>Trie un tableau.</td><td>[3,1,2].sort(); // [1,2,3]</td></tr>
+  <tr><td>slice()</td><td>Extrait une portion d’un tableau ou d’une chaîne.</td><td>[1,2,3,4].slice(1,3); // [2,3]</td></tr>
+  <tr><td>splice()</td><td>Modifie un tableau en ajoutant ou supprimant des éléments.</td><td>[1,2,3].splice(1,1); // [1,3]</td></tr>
+  <tr><td>trim()</td><td>Supprime espaces début/fin d’une chaîne.</td><td>"  hi ".trim(); // "hi"</td></tr>
+  <tr><td>push()</td><td>Ajoute un élément à la fin d’un tableau.</td><td>[1,2].push(3); // [1,2,3]</td></tr>
+  <tr><td>pop()</td><td>Supprime le dernier élément.</td><td>[1,2,3].pop(); // [1,2]</td></tr>
+  <tr><td>shift()</td><td>Supprime le premier élément.</td><td>[1,2,3].shift(); // [2,3]</td></tr>
+  <tr><td>unshift()</td><td>Ajoute au début.</td><td>[2,3].unshift(1); // [1,2,3]</td></tr>
+  <tr><td>map()</td><td>Crée un nouveau tableau avec fonction appliquée.</td><td>[1,2,3].map(x=>x*2); // [2,4,6]</td></tr>
+  <tr><td>filter()</td><td>Filtre selon condition.</td><td>[1,2,3].filter(x=>x>1); // [2,3]</td></tr>
+  <tr><td>reduce()</td><td>Réduit un tableau à une seule valeur.</td><td>[1,2,3].reduce((a,b)=>a+b,0); // 6</td></tr>
+  <tr><td>reduceRight()</td><td>Réduction de droite à gauche.</td><td>[1,2,3].reduceRight((a,b)=>a-b); // 0</td></tr>
+  <tr><td>find()</td><td>Renvoie le premier élément satisfaisant la condition.</td><td>[1,2,3].find(x=>x>1); // 2</td></tr>
+  <tr><td>findIndex()</td><td>Renvoie l’indice du premier élément trouvé.</td><td>[1,2,3].findIndex(x=>x>1); // 1</td></tr>
+  <tr><td>includes()</td><td>Vérifie la présence d’un élément.</td><td>[1,2,3].includes(2); // true</td></tr>
+  <tr><td>indexOf()</td><td>Renvoie l’indice d’un élément.</td><td>[1,2,3].indexOf(2); // 1</td></tr>
+  <tr><td>lastIndexOf()</td><td>Dernier indice d’un élément.</td><td>[1,2,2].lastIndexOf(2); // 2</td></tr>
+  <tr><td>join()</td><td>Concatène les éléments en chaîne.</td><td>[1,2,3].join('-'); // "1-2-3"</td></tr>
+  <tr><td>concat()</td><td>Concatène tableaux ou chaînes.</td><td>[1,2].concat([3,4]); // [1,2,3,4]</td></tr>
+  <tr><td>every()</td><td>Vérifie si tous respectent la condition.</td><td>[2,4].every(x=>x%2===0); // true</td></tr>
+  <tr><td>some()</td><td>Vérifie si au moins un respecte la condition.</td><td>[1,2,3].some(x=>x>2); // true</td></tr>
+  <tr><td>reverse()</td><td>Inverse l’ordre du tableau.</td><td>[1,2,3].reverse(); // [3,2,1]</td></tr>
+  <tr><td>fill()</td><td>Remplit un tableau avec une valeur.</td><td>[1,2,3].fill(0); // [0,0,0]</td></tr>
+  <tr><td>copyWithin()</td><td>Copie une partie dans le même tableau.</td><td>[1,2,3,4].copyWithin(0,2); // [3,4,3,4]</td></tr>
+  <tr><td>flat()</td><td>Aplatie un tableau.</td><td>[1,[2,3]].flat(); // [1,2,3]</td></tr>
+  <tr><td>flatMap()</td><td>Map puis aplatis.</td><td>[1,2].flatMap(x=>[x,x*2]); // [1,2,2,4]</td></tr>
+  <tr><td>split()</td><td>Divise une chaîne en tableau.</td><td>"a-b-c".split('-'); // ["a","b","c"]</td></tr>
+  <tr><td>replace()</td><td>Remplace une portion de chaîne.</td><td>"abc".replace("a","x"); // "xbc"</td></tr>
+  <tr><td>replaceAll()</td><td>Remplace toutes occurrences.</td><td>"aaa".replaceAll("a","b"); // "bbb"</td></tr>
+  <tr><td>charAt()</td><td>Renvoie le caractère à un indice.</td><td>"abc".charAt(1); // "b"</td></tr>
+  <tr><td>charCodeAt()</td><td>Code Unicode du caractère.</td><td>"A".charCodeAt(0); // 65</td></tr>
+  <tr><td>toUpperCase()</td><td>Met en majuscules.</td><td>"abc".toUpperCase(); // "ABC"</td></tr>
+  <tr><td>toLowerCase()</td><td>Met en minuscules.</td><td>"ABC".toLowerCase(); // "abc"</td></tr>
+  <tr><td>trimStart()</td><td>Supprime espaces début.</td><td>"  hi".trimStart(); // "hi"</td></tr>
+  <tr><td>trimEnd()</td><td>Supprime espaces fin.</td><td>"hi  ".trimEnd(); // "hi"</td></tr>
+  <tr><td>padStart()</td><td>Remplit début chaîne.</td><td>"5".padStart(3,"0"); // "005"</td></tr>
+  <tr><td>padEnd()</td><td>Remplit fin chaîne.</td><td>"5".padEnd(3,"0"); // "500"</td></tr>
+  <tr><td>repeat()</td><td>Répète la chaîne.</td><td>"ha".repeat(3); // "hahaha"</td></tr>
+  <tr><td>startsWith()</td><td>Vérifie début chaîne.</td><td>"abc".startsWith("a"); // true</td></tr>
+  <tr><td>endsWith()</td><td>Vérifie fin chaîne.</td><td>"abc".endsWith("c"); // true</td></tr>
+  <tr><td>Array.isArray()</td><td>Vérifie si c’est un tableau.</td><td>Array.isArray([1]); // true</td></tr>
+  <tr><td>Object.keys()</td><td>Renvoie clés d’un objet.</td><td>Object.keys({a:1}); // ["a"]</td></tr>
+  <tr><td>Object.values()</td><td>Renvoie valeurs d’un objet.</td><td>Object.values({a:1}); // [1]</td></tr>
+  <tr><td>Object.entries()</td><td>Renvoie paires [clé,valeur].</td><td>Object.entries({a:1}); // [["a",1]]</td></tr>
+  <tr><td>hasOwnProperty()</td><td>Vérifie si clé existe dans l’objet.</td><td>{a:1}.hasOwnProperty("a"); // true</td></tr>
+  <tr><td>forEach()</td><td>Itère sur tableau.</td><td>[1,2].forEach(x=>console.log(x));</td></tr>
+  <tr><td>toString()</td><td>Convertit en chaîne.</td><td>[1,2].toString(); // "1,2"</td></tr>
+  <tr><td>valueOf()</td><td>Renvoie valeur primitive.</td><td>(123).valueOf(); // 123</td></tr>
+  <tr><td>Number()</td><td>Convertit en nombre.</td><td>Number("123"); // 123</td></tr>
+  <tr><td>String()</td><td>Convertit en chaîne.</td><td>String(123); // "123"</td></tr>
+  <tr><td>Boolean()</td><td>Convertit en booléen.</td><td>Boolean(0); // false</td></tr>
+  <tr><td>parseInt()</td><td>Convertit chaîne en entier.</td><td>parseInt("42"); // 42</td></tr>
+  <tr><td>parseFloat()</td><td>Convertit chaîne en flottant.</td><td>parseFloat("3.14"); // 3.14</td></tr>
+  <tr><td>isNaN()</td><td>Vérifie si valeur n’est pas un nombre.</td><td>isNaN("abc"); // true</td></tr>
+  <tr><td>isFinite()</td><td>Vérifie si nombre fini.</td><td>isFinite(10/2); // true</td></tr>
+  <tr><td>Math.max()</td><td>Renvoie le max.</td><td>Math.max(1,5,3); // 5</td></tr>
+  <tr><td>Math.min()</td><td>Renvoie le min.</td><td>Math.min(1,5,3); // 1</td></tr>
+  <tr><td>Math.round()</td><td>Arrondi au plus proche entier.</td><td>Math.round(4.6); // 5</td></tr>
+  <tr><td>Math.floor()</td><td>Arrondi vers le bas.</td><td>Math.floor(4.6); // 4</td></tr>
+  <tr><td>Math.ceil()</td><td>Arrondi vers le haut.</td><td>Math.ceil(4.1); // 5</td></tr>
+  <tr><td>Math.random()</td><td>Nombre aléatoire 0-1.</td><td>Math.random(); // 0.732...</td></tr>
+  <tr><td>Math.abs()</td><td>Valeur absolue.</td><td>Math.abs(-5); // 5</td></tr>
+</table>
+</body>
+</html>
