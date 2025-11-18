@@ -1,85 +1,1134 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Méthodes JavaScript - 60</title>
+<meta charset="UTF-8" />
+<title>Répertoire des Méthodes JavaScript</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
 <style>
-  table {border-collapse: collapse; width: 100%;}
-  th, td {border: 1px solid #ccc; padding: 6px; text-align: left; font-size: 14px;}
-  th {background-color: #f4f4f4;}
-  td code {white-space: pre-wrap;}
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f5f7fb;
+        margin: 40px;
+        color: #1f2d3d;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    #search {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 17px;
+        border: 2px solid #d4d9e2;
+        border-radius: 10px;
+        margin-bottom: 28px;
+        background: #ffffff;
+        transition: 0.3s;
+    }
+
+    #search:focus {
+        outline: none;
+        border-color: #2c82c9;
+        box-shadow: 0 0 6px rgba(44, 130, 201, 0.25);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+
+    thead th {
+        background: #2c3e50;
+        color: #ffffff;
+        text-transform: uppercase;
+        padding: 15px;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    tbody td {
+        padding: 15px;
+        vertical-align: top;
+        border-top: 1px solid #ecf0f5;
+    }
+
+    tbody td:first-child {
+        font-weight: 600;
+        color: #1d3557;
+        font-size: 16px;
+        width: 18%;
+    }
+
+    .example-block {
+        margin-bottom: 12px;
+    }
+
+    .example-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: #2c3e50;
+    }
+
+    code {
+        display: block;
+        background: #eef1f6;
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 14px;
+        white-space: pre-wrap;
+    }
 </style>
 </head>
+
 <body>
-<h2>60 Méthodes JavaScript Courantes</h2>
+
+<h1>Répertoire des Méthodes JavaScript</h1>
+
+<input type="text" id="search" placeholder="Rechercher une méthode ou un exemple…">
+
 <table>
-  <tr>
-    <th>Méthode</th>
-    <th>Description</th>
-    <th>Exemple</th>
-  </tr>
-  <tr><td>sort()</td><td>Trie un tableau.</td><td>[3,1,2].sort(); // [1,2,3]</td></tr>
-  <tr><td>slice()</td><td>Extrait une portion d’un tableau ou d’une chaîne.</td><td>[1,2,3,4].slice(1,3); // [2,3]</td></tr>
-  <tr><td>splice()</td><td>Modifie un tableau en ajoutant ou supprimant des éléments.</td><td>[1,2,3].splice(1,1); // [1,3]</td></tr>
-  <tr><td>trim()</td><td>Supprime espaces début/fin d’une chaîne.</td><td>"  hi ".trim(); // "hi"</td></tr>
-  <tr><td>push()</td><td>Ajoute un élément à la fin d’un tableau.</td><td>[1,2].push(3); // [1,2,3]</td></tr>
-  <tr><td>pop()</td><td>Supprime le dernier élément.</td><td>[1,2,3].pop(); // [1,2]</td></tr>
-  <tr><td>shift()</td><td>Supprime le premier élément.</td><td>[1,2,3].shift(); // [2,3]</td></tr>
-  <tr><td>unshift()</td><td>Ajoute au début.</td><td>[2,3].unshift(1); // [1,2,3]</td></tr>
-  <tr><td>map()</td><td>Crée un nouveau tableau avec fonction appliquée.</td><td>[1,2,3].map(x=>x*2); // [2,4,6]</td></tr>
-  <tr><td>filter()</td><td>Filtre selon condition.</td><td>[1,2,3].filter(x=>x>1); // [2,3]</td></tr>
-  <tr><td>reduce()</td><td>Réduit un tableau à une seule valeur.</td><td>[1,2,3].reduce((a,b)=>a+b,0); // 6</td></tr>
-  <tr><td>reduceRight()</td><td>Réduction de droite à gauche.</td><td>[1,2,3].reduceRight((a,b)=>a-b); // 0</td></tr>
-  <tr><td>find()</td><td>Renvoie le premier élément satisfaisant la condition.</td><td>[1,2,3].find(x=>x>1); // 2</td></tr>
-  <tr><td>findIndex()</td><td>Renvoie l’indice du premier élément trouvé.</td><td>[1,2,3].findIndex(x=>x>1); // 1</td></tr>
-  <tr><td>includes()</td><td>Vérifie la présence d’un élément.</td><td>[1,2,3].includes(2); // true</td></tr>
-  <tr><td>indexOf()</td><td>Renvoie l’indice d’un élément.</td><td>[1,2,3].indexOf(2); // 1</td></tr>
-  <tr><td>lastIndexOf()</td><td>Dernier indice d’un élément.</td><td>[1,2,2].lastIndexOf(2); // 2</td></tr>
-  <tr><td>join()</td><td>Concatène les éléments en chaîne.</td><td>[1,2,3].join('-'); // "1-2-3"</td></tr>
-  <tr><td>concat()</td><td>Concatène tableaux ou chaînes.</td><td>[1,2].concat([3,4]); // [1,2,3,4]</td></tr>
-  <tr><td>every()</td><td>Vérifie si tous respectent la condition.</td><td>[2,4].every(x=>x%2===0); // true</td></tr>
-  <tr><td>some()</td><td>Vérifie si au moins un respecte la condition.</td><td>[1,2,3].some(x=>x>2); // true</td></tr>
-  <tr><td>reverse()</td><td>Inverse l’ordre du tableau.</td><td>[1,2,3].reverse(); // [3,2,1]</td></tr>
-  <tr><td>fill()</td><td>Remplit un tableau avec une valeur.</td><td>[1,2,3].fill(0); // [0,0,0]</td></tr>
-  <tr><td>copyWithin()</td><td>Copie une partie dans le même tableau.</td><td>[1,2,3,4].copyWithin(0,2); // [3,4,3,4]</td></tr>
-  <tr><td>flat()</td><td>Aplatie un tableau.</td><td>[1,[2,3]].flat(); // [1,2,3]</td></tr>
-  <tr><td>flatMap()</td><td>Map puis aplatis.</td><td>[1,2].flatMap(x=>[x,x*2]); // [1,2,2,4]</td></tr>
-  <tr><td>split()</td><td>Divise une chaîne en tableau.</td><td>"a-b-c".split('-'); // ["a","b","c"]</td></tr>
-  <tr><td>replace()</td><td>Remplace une portion de chaîne.</td><td>"abc".replace("a","x"); // "xbc"</td></tr>
-  <tr><td>replaceAll()</td><td>Remplace toutes occurrences.</td><td>"aaa".replaceAll("a","b"); // "bbb"</td></tr>
-  <tr><td>charAt()</td><td>Renvoie le caractère à un indice.</td><td>"abc".charAt(1); // "b"</td></tr>
-  <tr><td>charCodeAt()</td><td>Code Unicode du caractère.</td><td>"A".charCodeAt(0); // 65</td></tr>
-  <tr><td>toUpperCase()</td><td>Met en majuscules.</td><td>"abc".toUpperCase(); // "ABC"</td></tr>
-  <tr><td>toLowerCase()</td><td>Met en minuscules.</td><td>"ABC".toLowerCase(); // "abc"</td></tr>
-  <tr><td>trimStart()</td><td>Supprime espaces début.</td><td>"  hi".trimStart(); // "hi"</td></tr>
-  <tr><td>trimEnd()</td><td>Supprime espaces fin.</td><td>"hi  ".trimEnd(); // "hi"</td></tr>
-  <tr><td>padStart()</td><td>Remplit début chaîne.</td><td>"5".padStart(3,"0"); // "005"</td></tr>
-  <tr><td>padEnd()</td><td>Remplit fin chaîne.</td><td>"5".padEnd(3,"0"); // "500"</td></tr>
-  <tr><td>repeat()</td><td>Répète la chaîne.</td><td>"ha".repeat(3); // "hahaha"</td></tr>
-  <tr><td>startsWith()</td><td>Vérifie début chaîne.</td><td>"abc".startsWith("a"); // true</td></tr>
-  <tr><td>endsWith()</td><td>Vérifie fin chaîne.</td><td>"abc".endsWith("c"); // true</td></tr>
-  <tr><td>Array.isArray()</td><td>Vérifie si c’est un tableau.</td><td>Array.isArray([1]); // true</td></tr>
-  <tr><td>Object.keys()</td><td>Renvoie clés d’un objet.</td><td>Object.keys({a:1}); // ["a"]</td></tr>
-  <tr><td>Object.values()</td><td>Renvoie valeurs d’un objet.</td><td>Object.values({a:1}); // [1]</td></tr>
-  <tr><td>Object.entries()</td><td>Renvoie paires [clé,valeur].</td><td>Object.entries({a:1}); // [["a",1]]</td></tr>
-  <tr><td>hasOwnProperty()</td><td>Vérifie si clé existe dans l’objet.</td><td>{a:1}.hasOwnProperty("a"); // true</td></tr>
-  <tr><td>forEach()</td><td>Itère sur tableau.</td><td>[1,2].forEach(x=>console.log(x));</td></tr>
-  <tr><td>toString()</td><td>Convertit en chaîne.</td><td>[1,2].toString(); // "1,2"</td></tr>
-  <tr><td>valueOf()</td><td>Renvoie valeur primitive.</td><td>(123).valueOf(); // 123</td></tr>
-  <tr><td>Number()</td><td>Convertit en nombre.</td><td>Number("123"); // 123</td></tr>
-  <tr><td>String()</td><td>Convertit en chaîne.</td><td>String(123); // "123"</td></tr>
-  <tr><td>Boolean()</td><td>Convertit en booléen.</td><td>Boolean(0); // false</td></tr>
-  <tr><td>parseInt()</td><td>Convertit chaîne en entier.</td><td>parseInt("42"); // 42</td></tr>
-  <tr><td>parseFloat()</td><td>Convertit chaîne en flottant.</td><td>parseFloat("3.14"); // 3.14</td></tr>
-  <tr><td>isNaN()</td><td>Vérifie si valeur n’est pas un nombre.</td><td>isNaN("abc"); // true</td></tr>
-  <tr><td>isFinite()</td><td>Vérifie si nombre fini.</td><td>isFinite(10/2); // true</td></tr>
-  <tr><td>Math.max()</td><td>Renvoie le max.</td><td>Math.max(1,5,3); // 5</td></tr>
-  <tr><td>Math.min()</td><td>Renvoie le min.</td><td>Math.min(1,5,3); // 1</td></tr>
-  <tr><td>Math.round()</td><td>Arrondi au plus proche entier.</td><td>Math.round(4.6); // 5</td></tr>
-  <tr><td>Math.floor()</td><td>Arrondi vers le bas.</td><td>Math.floor(4.6); // 4</td></tr>
-  <tr><td>Math.ceil()</td><td>Arrondi vers le haut.</td><td>Math.ceil(4.1); // 5</td></tr>
-  <tr><td>Math.random()</td><td>Nombre aléatoire 0-1.</td><td>Math.random(); // 0.732...</td></tr>
-  <tr><td>Math.abs()</td><td>Valeur absolue.</td><td>Math.abs(-5); // 5</td></tr>
+    <thead>
+        <tr>
+            <th>Méthode</th>
+            <th>Description</th>
+            <th>Exemples</th>
+        </tr>
+    </thead>
+
+    <tbody id="method-list">
+<tr>
+    <td>sort()</td>
+    <td>Trie les éléments d’un tableau selon un ordre donné.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[3,1,2].sort();</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>["b","a","c"].sort();</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const users = [{n:"Paul",a:30},{n:"Anna",a:20}];
+users.sort((x,y) => x.a - y.a);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>slice()</td>
+    <td>Retourne une copie partielle d’un tableau ou une chaîne.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2,3,4].slice(1,3);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>"Bonjour".slice(0,4);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const items = [...Array(10).keys()];
+items.slice(-3);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>trim()</td>
+    <td>Supprime les espaces en début et fin de chaîne.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>"  test  ".trim();</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>["  a "," b "].map(x => x.trim());</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const clean = str => str.trim().replace(/\s+/g," ");
+clean("  Hello    world   ");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>map()</td>
+    <td>Transforme chaque élément d’un tableau et retourne un nouveau tableau.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2,3].map(n => n * 2);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>["a","b"].map((c,i) => i + "-" + c);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const users = [{n:"A",points:10},{n:"B",points:20}];
+users.map(u => ({...u,bonus:u.points*0.2}));
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>filter()</td>
+    <td>Retourne les éléments d’un tableau qui satisfont une condition.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2,3,4].filter(n => n > 2);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>["test","","ok"].filter(x => x);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const list = [{v:10},{v:0},{v:5}];
+list.filter(o => o.v >= 5);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>reduce()</td>
+    <td>Accumule les valeurs d’un tableau selon une logique donnée.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2,3].reduce((a,b) => a + b, 0);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>["a","b","c"].reduce((s,c) => s + "-" + c);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const cart = [{p:20},{p:10},{p:15}];
+cart.reduce((total, item) => total + item.p, 0);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>forEach()</td>
+    <td>Exécute une fonction sur chaque élément sans retourner de valeur.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2].forEach(n => console.log(n));</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>
+const out = [];
+[1,2,3].forEach(n => out.push(n*2));
+            </code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const users = ["Anna","Paul"];
+users.forEach((u,i) => console.log(i+1, u));
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>find()</td>
+    <td>Retourne le premier élément correspondant à une condition.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,4,6].find(n => n > 3);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>
+["A","B","C"].find(c => c === "B");
+            </code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const users = [{id:1},{id:2},{id:3}];
+users.find(u => u.id === 2);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>includes()</td>
+    <td>Vérifie si un tableau ou une chaîne contient une valeur.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>[1,2,3].includes(2);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>"bonjour".includes("jour");</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const keys = ["admin","user","guest"];
+keys.includes("admin");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>push()</td>
+    <td>Ajoute un élément à la fin d’un tableau.</td>
+    <td>
+        <div class="example-block">
+            <div class="example-title">Simple :</div>
+            <code>const a=[1]; a.push(2);</code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Intermédiaire :</div>
+            <code>
+const list=[1,2];
+[3,4].forEach(n => list.push(n));
+            </code>
+        </div>
+        <div class="example-block">
+            <div class="example-title">Avancé :</div>
+            <code>
+const users=[];
+const addUser = name => users.push({name});
+addUser("Paul");
+            </code>
+        </div>
+    </td>
+</tr>
+
+
+
+
+<tr>
+    <td>pop()</td>
+    <td>Supprime et retourne le dernier élément d’un tableau.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].pop();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+const a=[5,6,7];
+const last=a.pop();
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const stack=[1,2,3];
+while(stack.length) stack.pop();
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>shift()</td>
+    <td>Supprime et retourne le premier élément du tableau.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].shift();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+const q=[10,20,30];
+const first=q.shift();
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const queue=[1,2,3];
+while(queue.length) queue.shift();
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>unshift()</td>
+    <td>Ajoute un ou plusieurs éléments au début.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[2,3].unshift(1);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+const a=[3,4];
+a.unshift(1,2);
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const events=[];
+events.unshift({type:"click",t:Date.now()});
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>splice()</td>
+    <td>Supprime, remplace ou ajoute des éléments dans un tableau.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].splice(1,1);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+const a=[1,2,3,4];
+a.splice(2,0,"X");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const items=["a","b","c"];
+items.splice(1,1,"new","value");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>concat()</td>
+    <td>Fusionne des tableaux ou des chaînes.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2].concat([3,4]);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+"Hello ".concat("World");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const all=[...a1.concat(a2).concat(a3)];
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>join()</td>
+    <td>Convertit un tableau en chaîne avec un séparateur.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].join("-");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+["a","b","c"].join("");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const path=["usr","local","bin"];
+path.join("/");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>reverse()</td>
+    <td>Inverse l’ordre des éléments d’un tableau.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].reverse();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+"abc".split("").reverse().join("");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const logs=[3,2,1];
+const sorted=logs.reverse().map(x=>x*x);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>indexOf()</td>
+    <td>Retourne l’indice de la première occurrence.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].indexOf(2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+"banana".indexOf("na");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const keys=["id","name","age"];
+keys.indexOf("age");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>lastIndexOf()</td>
+    <td>Retourne la dernière occurrence dans un tableau ou une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,2,3].lastIndexOf(2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+"banana".lastIndexOf("na");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const nums=[5,7,5,9];
+nums.lastIndexOf(5);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>includes()</td>
+    <td>Indique si un tableau contient une valeur donnée.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].includes(3);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>
+"javascript".includes("script");
+            </code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const permissions=["read","write"];
+permissions.includes("write");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>flat()</td>
+    <td>Aplati les sous-tableaux selon un niveau donné.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,[2,3]].flat();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>[1,[2,[3]]].flat(2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const arr=[1,[2],[3,[4]]];
+arr.flat(Infinity);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>flatMap()</td>
+    <td>Map + flat en un seul passage.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2].flatMap(x => [x,x*2]);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>["a","b"].flatMap(c => [c.toUpperCase(),c]);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const users=[{id:1,tags:["js","html"]},{id:2,tags:["css"]}];
+users.flatMap(u => u.tags);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>split()</td>
+    <td>Divise une chaîne selon un séparateur.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"a-b-c".split("-");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"hello world".split(" ");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+"1,2;3|4".split(/[,;|]/);
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>replace()</td>
+    <td>Remplace la première occurrence dans une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"abc".replace("a","x");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"Hello Bob".replace("Bob","Alice");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+"2025-11-18".replace(/-/,"/");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>replaceAll()</td>
+    <td>Remplace toutes les occurrences dans une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"aaa".replaceAll("a","b");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"test test".replaceAll("t","T");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+"10-20-30".replaceAll(/-/g,":");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>startsWith()</td>
+    <td>Vérifie si une chaîne commence par un motif.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"abc".startsWith("a");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"bonjour".startsWith("bon");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const url="https://site.com";
+url.startsWith("https");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>endsWith()</td>
+    <td>Vérifie si une chaîne se termine par un motif.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"abc".endsWith("c");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"photo.jpg".endsWith(".jpg");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const token="user-12345";
+token.endsWith("12345");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>padStart()</td>
+    <td>Ajoute des caractères au début d’une chaîne jusqu’à atteindre une longueur donnée.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"5".padStart(3,"0");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"42".padStart(5,".");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const id=12;
+String(id).padStart(6,"0");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>padEnd()</td>
+    <td>Ajoute des caractères à la fin d’une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"5".padEnd(3,"0");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"JS".padEnd(6,"*");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const name="Paul";
+name.padEnd(10," ");
+            </code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>repeat()</td>
+    <td>Répète une chaîne selon un nombre donné.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"ha".repeat(3);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"*".repeat(10);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+            <code>
+const banner="-".repeat(50);
+            </code>
+        </div>
+    </td>
+</tr>
+
+      <tr>
+    <td>charAt()</td>
+    <td>Retourne le caractère à un index donné.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"Hello".charAt(1);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"Bonjour".charAt("Bonjour".length - 1);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+function safeChar(str,i){ return str.charAt(i) || ""; }
+safeChar("Test",50);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>charCodeAt()</td>
+    <td>Retourne le code UTF-16 du caractère.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"A".charCodeAt(0);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"abc".charCodeAt(2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+"AZ".split("").map(l => l.charCodeAt(0));
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>fromCharCode()</td>
+    <td>Convertit des codes UTF-16 en caractères.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>String.fromCharCode(65);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>String.fromCharCode(72,101,108,108,111);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+[65,66,67].map(c => String.fromCharCode(c)).join("");
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>localeCompare()</td>
+    <td>Compare deux chaînes selon la locale.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"a".localeCompare("b");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"école".localeCompare("ecole","fr");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["z","é","a"].sort((a,b)=>a.localeCompare(b,"fr"));
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>match()</td>
+    <td>Retourne les correspondances d’une expression régulière.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"abc123".match(/[0-9]/);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"hello 2025".match(/\d+/);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+"js-html-css".match(/[a-z]+/g);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>matchAll()</td>
+    <td>Retourne un itérateur de toutes les correspondances.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+<code>[... "a1b2".matchAll(/\d/)];
+</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+<code>
+[..."ab12cd34".matchAll(/\d+/g)];
+</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+const reg=/([a-z]+)(\d+)/g;
+[..."js12css34".matchAll(reg)];
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>search()</td>
+    <td>Retourne l’index de la première correspondance.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"hello".search(/e/);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"javascript".search(/script/);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+"file-2025-version".search(/\d{4}/);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>concat()</td>
+    <td>Fusionne des chaînes ou tableaux.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2].concat([3]);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"Hello".concat(" ","World");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+const base=[1,2];
+const extra=[3,4];
+base.concat(extra,["x"]);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>reduceRight()</td>
+    <td>Équivaut à reduce mais de droite à gauche.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+<code>[1,2,3].reduceRight((a,b)=>a+b);
+</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+<code>
+["a","b","c"].reduceRight((a,b)=>a+b);
+</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+[[1],[2],[3]].reduceRight((acc,v)=>acc.concat(v),[]);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>every()</td>
+    <td>Vérifie si tous les éléments respectent une condition.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[2,4,6].every(n=>n%2===0);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>["a","b"].every(x=>typeof x==="string");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+const users=[{admin:true},{admin:false}];
+users.every(u=>u.admin===true);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>some()</td>
+    <td>Vérifie si au moins un élément respecte une condition.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,3,5].some(n=>n%2===0);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>["a",2,"c"].some(x=>typeof x==="number");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+const users=[{role:"user"},{role:"admin"}];
+users.some(u=>u.role==="admin");
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>fill()</td>
+    <td>Remplit un tableau par une valeur.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>new Array(3).fill(0);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>[1,2,3,4].fill("x",1,3);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+Array(5).fill().map((_,i)=>i+1);
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>includes()</td>
+    <td>Vérifie si une valeur est présente dans un tableau ou une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>[1,2,3].includes(2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"javascript".includes("script");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+const roles=["user","manager","admin"];
+roles.includes("admin");
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>toUpperCase()</td>
+    <td>Convertit une chaîne en majuscules.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"hello".toUpperCase();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"école".toUpperCase();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["js","css","html"].map(s=>s.toUpperCase());
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>toLowerCase()</td>
+    <td>Convertit une chaîne en minuscules.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"HELLO".toLowerCase();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"ÉCOLE".toLowerCase();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["JS","CSS","HTML"].map(s=>s.toLowerCase());
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>trim()</td>
+    <td>Supprime les espaces inutiles autour d’une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"  test  ".trim();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"   hello world".trim();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+[" a "," b "," c "].map(s=>s.trim());
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>trimStart()</td>
+    <td>Supprime uniquement les espaces au début.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"   test".trimStart();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"   hello  ".trimStart();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["  js","  css"].map(s=>s.trimStart());
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>trimEnd()</td>
+    <td>Supprime les espaces à la fin d’une chaîne.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+            <code>"test   ".trimEnd();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+            <code>"hello   ".trimEnd();</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["js  ","css  "].map(s=>s.trimEnd());
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>parseInt()</td>
+    <td>Convertit une chaîne en entier.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+<code>parseInt("42");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+<code>parseInt("1010",2);</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["10","20px","30.9"].map(v=>parseInt(v));
+</code>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td>parseFloat()</td>
+    <td>Convertit une chaîne en nombre décimal.</td>
+    <td>
+        <div class="example-block"><div class="example-title">Simple :</div>
+<code>parseFloat("3.14");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Intermédiaire :</div>
+<code>parseFloat("42.55px");</code>
+        </div>
+        <div class="example-block"><div class="example-title">Avancé :</div>
+<code>
+["1.1","2.2","3.33px"].map(v=>parseFloat(v));
+</code>
+        </div>
+    </td>
+</tr>
+
+      
+      
+    </tbody>
 </table>
+
+<script>
+document.getElementById("search").addEventListener("input", function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("#method-list tr");
+
+    rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+    });
+});
+</script>
+
 </body>
 </html>
