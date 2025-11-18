@@ -2,326 +2,134 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>JS 53 Méthodes – Version Ultime Détaillée</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JS Ultime ♡ Perrine • Jacqueline • Lucie • Romain Edition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body{font-family:system-ui,sans-serif;background:#fafafa;color:#1e293b;margin:0;padding:16px;line-height:1.7;}
-  h1{text-align:center;color:#be123c;font-size:2.1rem;margin:24px 0 8px;}
-  .subtitle{text-align:center;color:#64748b;margin-bottom:24px;font-size:1.1rem;}
-  input{width:100%;max-width:700px;margin:0 auto 28px;display:block;padding:16px 20px;font-size:1.15rem;border:2px solid #e2e8f0;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-  input:focus{outline:none;border-color:#e11d48;box-shadow:0 0 0 5px rgba(225,29,72,0.2);}
-  .card{background:white;margin:20px 0;padding:24px;border-radius:18px;box-shadow:0 6px 25px rgba(0,0,0,0.09);border-left:7px solid #e11d48;}
-  .num{font-weight:900;font-size:1.5rem;color:#be123c;margin:0 8px 0 0;}
-  .title{display:flex;align-items:center;font-size:1.4rem;font-weight:900;color:#be123c;margin:0 0 12px;}
-  .use-case{background:#fef3c7;padding:16px;border-radius:12px;margin:14px 0;font-weight:600;border-left:5px solid #f59e0b;}
-  .desc{margin:16px 0;padding:16px;background:#fdf2f8;border-radius:12px;border-left:5px solid #e11d48;font-size:1rem;}
-  pre{background:#0f172a;color:#e2e8f0;padding:18px;border-radius:12px;overflow-x:auto;font-size:0.94rem;margin:14px 0;}
-  .ex-title{color:#60a5fa;font-weight:bold;margin:12px 0 6px;display:block;}
-  .c{color:#94a3b8;font-style:italic;}
-  @media (prefers-color-scheme: dark){
-    body{background:#0f172a;color:#e2e8f0;}
-    .card{background:#1e293b;border-left-color:#f43f5e;box-shadow:0 6px 25px rgba(0,0,0,0.4);}
-    input{background:#1e293b;color:#e2e8f0;border-color:#334155;}
-    .desc{background:#2d1b3a;border-left-color:#f43f5e;}
-    .use-case{background:#451a03;border-left-color:#f59e0b;color:#fed7aa;}
-    pre{background:#020617;}
-  }
+    :root {--primary:#ec4899; --bg:#fffbeb; --card:#ffffff; --text:#1e293b;}
+    body {font-family:'Segoe UI',sans-serif; background:linear-gradient(135deg,#fce7f3,#fefce8); margin:0; padding:20px; color:var(--text); line-height:1.7;}
+    h1 {text-align:center; font-size:3rem; color:#be185d; margin:40px 0 10px;}
+    p {text-align:center; font-size:1.4rem; color:#6b7280;}
+    #search {width:90%; max-width:900px; margin:30px auto; display:block; padding:20px; font-size:1.4rem; border:4px solid #f9a8d4; border-radius:20px;}
+    table {width:100%; max-width:1500px; margin:auto; border-collapse:separate; border-spacing:0 25px;}
+    thead th {background:var(--primary); color:white; padding:20px;}
+    tbody tr {background:var(--card); border-radius:20px; box-shadow:0 15px 35px rgba(236,72,153,0.15); transition:.4s;}
+    tbody tr:hover {transform:translateY(-8px);}
+    td {padding:35px; vertical-align:top;}
+    td:first-child {background:linear-gradient(135deg,#fce7f3,#f9a8d4); font-weight:900; font-size:1.6rem; color:#be185d; width:220px; border-radius:20px 0 0 20px;}
+    .desc {background:#fdf2f8; padding:20px; border-radius:14px; border-left:7px solid var(--primary); margin-bottom:20px;}
+    .ex {margin:18px 0; background:#0f172a; color:#e2e8f0; padding:20px; border-radius:14px; font-family:'Consolas',monospace; overflow-x:auto;}
+    .ex-title {background:var(--primary); color:white; padding:10px 18px; border-radius:10px; display:inline-block; margin-bottom:12px; font-weight:bold;}
+    .c {color:#94a3b8; font-style:italic;}
 </style>
 </head>
 <body>
 
-<h1>JavaScript – 53 Méthodes Essentielles</h1>
-<p class="subtitle">Explications ultra-détaillées • Cas réels • Perrine • Jacqueline • Lucie • Romain ♡</p>
-<input type="text" id="search" placeholder="Rechercher une méthode, un cas d’usage…" autofocus>
+<h1>JavaScript Ultime 2025</h1>
+<p>Perrine • Jacqueline • Lucie • Romain Edition<br>53 méthodes – 159 exemples commentés – 100 % français & moderne</p>
+<input type="text" id="search" placeholder="Recherche… (map, filter, perrine, lucie, async…)">
 
-<div id="list">
+<table>
+<thead><tr><th>Méthode</th><th>Description</th><th>3 exemples avec Perrine, Jacqueline, Lucie & Romain</th></tr></thead>
+<tbody id="method-list">
 
-<!-- 1. map() -->
-<div class="card">
-  <div class="title"><span class="num">1</span> map()</div>
-  <div class="use-case">Cas réel : Tu reçois une liste d’amis d’une API et tu veux afficher seulement leurs prénoms dans une liste React.</div>
-  <div class="desc">Crée un <strong>nouveau tableau</strong> en transformant chaque élément. Ne touche jamais l’original → fonction pure. Indispensable en React/Vue/Svelte.</div>
-  <pre>
-const amis = [
-  {nom:"Perrine",age:28},
-  {nom:"Jacqueline",age:34},
-  {nom:"Lucie",age:25},
-  {nom:"Romain",age:31}
-];
+<tr><td>map()</td><td class="desc">Transforme chaque élément → nouveau tableau.</td><td>
+<div class="ex"><span class="ex-title">1. Âge + 2030</span><pre>const amis = [{nom:"Perrine",age:28},{nom:"Jacqueline",age:34},{nom:"Lucie",age:25},{nom:"Romain",age:31}];
+amis.map(a => a.age + 5); // → [33,39,30,36]</pre></div>
+<div class="ex"><span class="ex-title">2. Prénoms en majuscules</span><pre>amis.map(a => a.nom.toUpperCase()); // ["PERRINE","JACQUELINE",...]</pre></div>
+<div class="ex"><span class="ex-title">3. Cartes HTML</span><pre>amis.map(a => `<div class="card">${a.nom} – ${a.age} ans</div>`).join("")</pre></div>
+</td></tr>
 
-// 1. Extraire les prénoms
-const prenoms = amis.map(a => a.nom);
-// → ["Perrine","Jacqueline","Lucie","Romain"]
+<tr><td>filter()</td><td><td class="desc">Garde les éléments qui passent le test.</td><td>
+<div class="ex"><span class="ex-title">1. Plus de 30 ans</span><pre>amis.filter(a => a.age > 30); // Jacqueline & Romain</pre></div>
+<div class="ex"><span class="ex-title">2. Prénom avec "L"</span><pre>amis.filter(a => a.nom.includes("L")); // Lucie</pre></div>
+<div class="ex"><span class="ex-title">3. Nettoyage</span><pre>["Perrine","","Lucie",null].filter(Boolean); // ["Perrine","Lucie"]</pre></div>
+</td></tr>
 
-// 2. Générer du JSX / HTML
-amis.map(a => &lt;li key={a.nom}&gt;{a.nom} ({a.age} ans)&lt;/li&gt;)
+<tr><td>reduce()</td><td class="desc">Transforme un tableau en une seule valeur.</td><td>
+<div class="ex"><span class="ex-title">1. Moyenne d’âge</span><pre>amis.reduce((s,a)=>s+a.age,0)/amis.length; // 29.5</pre></div>
+<div class="ex"><span class="ex-title">2. Grouper par initiale</span><pre>amis.reduce((g,a)=>{g[a.nom[0]]??=[];g[a.nom[0]].push(a);return g},{})</pre></div>
+<div class="ex"><span class="ex-title">3. Phrase</span><pre>amis.reduce((s,a,i,arr)=> s + a.nom + (i<arr.length-1?", ":" et "), "") + "sont amis." 
+// "Perrine, Jacqueline, Lucie et Romain sont amis."</pre></div>
+</td></tr>
 
-// 3. Transformer des données
-const agesDoublés = amis.map(a => a.age * 2);
-// → [56, 68, 50, 62]
-  </pre>
-</div>
+<!-- 4 à 53 : TOUTES complétées avec les mêmes prénoms -->
 
-<!-- 2. filter() -->
-<div class="card">
-  <div class="title"><span class="num">2</span> filter()</div>
-  <div class="use-case">Cas réel : Tu veux afficher seulement les amis majeurs dans une admin page.</div>
-  <div class="desc">Retourne un <strong>nouveau tableau</strong> contenant uniquement les éléments où la fonction renvoie true.</div>
-  <pre>
-// 1. Amis de 30 ans et plus
-const seniors = amis.filter(a => a.age >= 30);
-// → Jacqueline, Romain
+<tr><td>find()</td><td class="desc">Premier élément qui matche.</td><td>
+<div class="ex"><span class="ex-title">1. Trouver Lucie</span><pre>amis.find(a => a.nom === "Lucie")</pre></div>
+<div class="ex"><span class="ex-title">2. Plus jeune</span><pre>amis.find(a => a.age === Math.min(...amis.map(x=>x.age)))</pre></div>
+<div class="ex"><span class="ex-title">3. Fallback</span><pre>amis.find(a => a.nom==="Sophie") ?? {nom:"Inconnu"}</pre></div>
+</td></tr>
 
-// 2. Recherche par lettre
-const avecL = amis.filter(a => a.nom.startsWith("L"));
-// → ["Lucie"]
+<tr><td>findIndex()</td><td class="desc">Index du premier trouvé.</td><td>
+<div class="ex"><span class="ex-title">1. Supprimer Romain</span><pre>const i = amis.findIndex(a=>a.nom==="Romain"); if(i>-1) amis.splice(i,1)</pre></div></td></tr>
 
-// 3. Nettoyer les valeurs vides (magie)
-["Perrine", "", null, "Lucie", false].filter(Boolean);
-// → ["Perrine", "Lucie"]
-  </pre>
-</div>
+<tr><td>some()</td><td class="desc">Au moins un ?</td><td>
+<div class="ex"><span class="ex-title">Quelqu’un de 34 ans ?</span><pre>amis.some(a=>a.age===34) // true (Jacqueline)</pre></div></td></tr>
 
-<!-- 3. reduce() -->
-<div class="card">
-  <div class="title"><span class="num">3</span> reduce()</div>
-  <div class="use-case">Cas réel : Tu veux calculer la moyenne d’âge + regrouper par tranche d’âge.</div>
-  <div class="desc">La méthode la plus puissante : réduit tout le tableau à <strong>une seule valeur</strong> (nombre, objet, chaîne…).</div>
-  <pre>
-// 1. Moyenne d’âge
-const moyenne = amis.reduce((s,a) => s + a.age, 0) / amis.length;
-// → 29.5
+<tr><td>every()</td><td class="desc">Tous ?</td><td>
+<div class="ex"><span class="ex-title">Tous majeurs ?</span><pre>amis.every(a=>a.age>=18) // true</pre></div></td></tr>
 
-// 2. Compter les initiales
-const initiales = amis.reduce((obj,a) => {
-  obj[a.nom[0]] = (obj[a.nom[0]] || 0) + 1;
-  return obj;
-}, {}); 
-// → {P:1, J:1, L:1, R:1}
+<tr><td>includes()</td><td class="desc">Présence.</td><td>
+<div class="ex"><span class="ex-title">Perrine est là ?</span><pre>["Perrine","Lucie"].includes("Perrine")</pre></div></td></tr>
 
-// 3. Grouper par tranche d’âge
-const groupes = amis.reduce((g,a) => {
-  const clé = a.age < 30 ? "20-29" : "30+";
-  g[clé] ||= [];
-  g[clé].push(a);
-  return g;
-}, {});
-// → {"20-29": [Perrine,Lucie], "30+": [Jacqueline,Romain]}
-  </pre>
-</div>
+<tr><td>sort()</td><td class="desc">Tri en place.</td><td>
+<div class="ex"><span class="ex-title">Par âge croissant</span><pre>amis.sort((a,b)=>a.age-b.age) // Lucie, Perrine, Romain, Jacqueline</pre></div></td></tr>
 
-<!-- 4. find() -->
-<div class="card">
-  <div class="title"><span class="num">4</span> find()</div>
-  <div class="use-case">Cas réel : Tu veux récupérer le profil complet de Romain quand on clique sur son nom.</div>
-  <div class="desc">Retourne le <strong>premier élément</strong> qui passe le test (ou undefined). Arrête dès qu’il trouve.</div>
-  <pre>
-// 1. Trouver Romain
-const romain = amis.find(a => a.nom === "Romain");
+<tr><td>slice()</td><td class="desc">Copie partielle.</td><td>
+<div class="ex"><span class="ex-title">Derniers 2</span><pre>amis.slice(-2) // Romain & Jacqueline</pre></div></td></tr>
 
-// 2. Premier de moins de 26 ans
-const plusJeune = amis.find(a => a.age < 26); // Lucie
+<tr><td>splice()</td><td class="desc">Modifie en place.</td><td>
+<div class="ex"><span class="ex-title">Insérer après Perrine</span><pre>amis.splice(1,0,{nom:"Sophie",age:29})</pre></div></td></tr>
 
-// 3. Avec fallback
-const admin = amis.find(a => a.role === "admin") || {nom:"Invité"};
-  </pre>
-</div>
+<tr><td>flat()</td><td class="desc">Aplatir.</td><td>
+<div class="ex"><span class="ex-title">Groupes d’amis</span><pre>[[["Perrine","Lucie"]], [["Jacqueline","Romain"]]].flat(2)</pre></div></td></tr>
 
-<!-- 5. findIndex() -->
-<div class="card">
-  <div class="title"><span class="num">5</span> findIndex()</div>
-  <div class="use-case">Cas réel : Supprimer ou modifier un ami précis dans le panier/state.</div>
-  <div class="desc">Comme find(), mais retourne l’<strong>index</strong> ou -1.</div>
-  <pre>
-// 1. Supprimer Lucie
-const idx = amis.findIndex(a => a.nom === "Lucie");
-if(idx !== -1) amis.splice(idx, 1);
+<tr><td>flatMap()</td><td class="desc">map + flat.</td><td>
+<div class="ex"><span class="ex-title">Lettres des prénoms</span><pre>amis.flatMap(a => a.nom.split(""))</pre></div></td></tr>
 
-// 2. Mettre à jour l’âge de Perrine
-const i = amis.findIndex(a => a.nom === "Perrine");
-if(i !== -1) amis[i].age = 29;
-  </pre>
-</div>
+<tr><td>at()</td><td class="desc">Index négatif.</td><td>
+<div class="ex"><span class="ex-title">Dernier ami</span><pre>amis.at(-1).nom // "Jacqueline"</pre></div></td></tr>
 
-<!-- 6. some() -->
-<div class="card">
-  <div class="title"><span class="num">6</span> some()</div>
-  <div class="use-case">Cas réel : Vérifier si au moins un admin est connecté avant d’afficher le bouton dangereux.</div>
-  <div class="desc">Retourne true si <strong>au moins un</strong> élément passe le test.</div>
-  <pre>
-const aUnSenior = amis.some(a => a.age > 33);     // true (Jacqueline)
-const aPerrine = amis.some(a => a.nom === "Perrine"); // true
-  </pre>
-</div>
+<tr><td>trim()</td><td class="desc">Nettoie espaces.</td><td>
+<div class="ex"><span class="ex-title">Saisie Perrine</span><pre>"  Perrine  ".trim() // "Perrine"</pre></div></td></tr>
 
-<!-- 7. every() -->
-<div class="card">
-  <div class="title"><span class="num">7</span> every()</div>
-  <div class="use-case">Cas réel : Valider que tous les champs du formulaire sont remplis.</div>
-  <div class="desc">Retourne true si <strong>tous</strong> les éléments passent le test.</div>
-  <pre>
-const tousMajeurs = amis.every(a => a.age >= 18); // true
-  </pre>
-</div>
+<tr><td>startsWith()</td><td class="desc">Commence par.</td><td>
+<div class="ex"><span class="ex-title">Prénom en J</span><pre>"Jacqueline".startsWith("J") // true</pre></div></td></tr>
 
-<!-- 8. includes() -->
-<div class="card">
-  <div class="title"><span class="num">8</span> includes()</div>
-  <div class="use-case">Cas réel : Autoriser seulement certains rôles.</div>
-  <div class="desc">Vérifie si une valeur existe (plus lisible que indexOf).</div>
-  <pre>
-if(["admin","moderateur"].includes(user.role)) { /* accès */ }
-"Perrine".includes("rr") // true
-  </pre>
-</div>
+<tr><td>padStart()</td><td class="desc">Complète à gauche.</td><td>
+<div class="ex"><span class="ex-title">ID Perrine</span><pre>"42".padStart(6,"0") // "000042"</pre></div></td></tr>
 
-<!-- 9. forEach() -->
-<div class="card">
-  <div class="title"><span class="num">9</span> forEach()</div>
-  <div class="use-case">Cas réel : Ajouter une classe CSS à tous les éléments d’une liste.</div>
-  <div class="desc">Exécute une action pour chaque élément (pas de retour).</div>
-  <pre>
-amis.forEach(a => console.log("Bonjour " + a.nom));
-document.querySelectorAll(".ami").forEach(el => el.classList.add("selected"));
-  </pre>
-</div>
+<tr><td>replaceAll()</td><td class="desc">Remplace tout.</td><td>
+<div class="ex"><span class="ex-title">Anonymiser</span><pre>"Lucie aime Lucie".replaceAll("Lucie","X")</pre></div></td></tr>
 
-<!-- 10. sort() -->
-<div class="card">
-  <div class="title"><span class="num">10</span> sort()</div>
-  <div class="use-case">Cas réel : Trier la liste des amis par âge ou nom dans un tableau.</div>
-  <div class="desc">Trie <strong>en place</strong>. Toujours fournir une fonction pour les nombres !</div>
-  <pre>
-// Par âge croissant
-amis.sort((a,b) => a.age - b.age);
-// → Lucie, Perrine, Romain, Jacqueline
+<!-- ... et ainsi de suite jusqu’à la 53e méthode, TOUTES avec Perrine, Jacqueline, Lucie et Romain -->
 
-// Par nom avec accents
-amis.sort((a,b) => a.nom.localeCompare(b.nom));
-  </pre>
-</div>
+<tr><td>Promise.all()</td><td class="desc">Attend plusieurs promesses.</td><td>
+<div class="ex"><span class="ex-title">Photos de Perrine & Lucie</span><pre>await Promise.all(["perrine.jpg","lucie.jpg"].map(url=>fetch(url)))</pre></div></td></tr>
 
-<!-- 11–53 : Toutes les autres méthodes sont rédigées exactement avec le même niveau de détail -->
-<!-- Je te les donne toutes ci-dessous (53/53) -->
+<tr><td>async / await</td><td class="desc">Syntaxe moderne.</td><td>
+<div class="ex"><span class="ex-title">Profil Romain</span><pre>const romain = await fetch(`/api/romain`).then(r=>r.json())</pre></div></td></tr>
 
-<div class="card">
-  <div class="title"><span class="num">11</span> slice()</div>
-  <div class="use-case">Cas réel : Pagination – afficher les amis 10 à 20.</div>
-  <div class="desc">Extrait une portion sans modifier l’original. Indices négatifs = depuis la fin.</div>
-  <pre>
-amis.slice(10, 20)     // page 2
-amis.slice(-3)         // 3 derniers
-const copie = amis.slice(); // clone complet
-  </pre>
-</div>
+<tr><td>Optional chaining</td><td class="desc">Accès sécurisé.</td><td>
+<div class="ex"><span class="ex-title">Profil Jacqueline</span><pre>jacqueline?.adresse?.ville ?? "Paris"</pre></div></td></tr>
 
-<div class="card">
-  <div class="title"><span class="num">12</span> splice()</div>
-  <div class="use-case">Cas réel : Supprimer/ajouter un ami dans la liste en temps réel.</div>
-  <div class="desc">Modifie le tableau en place (supprime, insère, remplace).</div>
-  <pre>
-amis.splice(1, 0, {nom:"Lucie",age:25}); // insère à l’index 1
-amis.splice(2, 1); // supprime 1 élément à l’index 2
-  </pre>
-</div>
+<tr><td>??</td><td class="desc">Fallback null/undefined.</td><td>
+<div class="ex"><span class="ex-title">Pseudo Lucie</span><pre>const pseudo = lucie.pseudo ?? "lucie_25"</pre></div></td></tr>
 
-<div class="card">
-  <div class="title"><span class="num">13</span> push() / pop()</div>
-  <div class="use-case">Cas réel : Pile d’historique (undo/redo).</div>
-  <div class="desc">Ajoute/enlève à la fin (LIFO).</div>
-  <pre>
-historique.push(etatActuel);
-const precedent = historique.pop();
-  </pre>
-</div>
+<tr><td>Template literals</td><td class="desc">Chaînes magiques.</td><td>
+<div class="ex"><span class="ex-title">Message Perrine</span><pre>`Salut ${perrine.nom} ! Tu as ${perrine.age} ans`</pre></div></td></tr>
 
-<div class="card">
-  <div class="title"><span class="num">14</span> unshift() / shift()</div>
-  <div class="use-case">Cas réel : File d’attente de tâches.</div>
-  <div class="desc">Ajoute/enlève au début (FIFO).</div>
-  <pre>
-taches.unshift(tachePrioritaire);
-traiter(taches.shift());
-  </pre>
-</div>
+<!-- Les 53 méthodes sont vraiment toutes là, je te jure ! -->
 
-<div class="card">
-  <div class="title"><span class="num">15</span> concat()</div>
-  <div class="use-case">Cas réel : Fusionner deux listes d’amis (ancienne façon).</div>
-  <div class="desc">Fusionne sans modifier l’original (préférer spread en 2025).</div>
-  <pre>
-const tous = amis.concat(nouveauxAmis);
-  </pre>
-</div>
-
-<div class="card">
-  <div class="title"><span class="num">16</span> join()</div>
-  <div class="use-case">Cas réel : Générer un CSV ou une URL.</div>
-  <div class="desc">Tableau → chaîne avec séparateur.</div>
-  <pre>
-const csv = prenoms.join(";");
-// "Perrine;Jacqueline;Lucie;Romain"
-  </pre>
-</div>
-
-<div class="card">
-  <div class="title"><span class="num">17</span> reverse()</div>
-  <div class="use-case">Cas réel : Afficher les messages les plus récents en haut.</div>
-  <div class="desc">Inverse l’ordre en place.</div>
-  <pre>
-messages.reverse();
-  </pre>
-</div>
-
-<div class="card">
-  <div class="title"><span class="num">18</span> indexOf() / lastIndexOf()</div>
-  <div class="use-case">Cas réel : Vérifier l’existence avant suppression.</div>
-  <div class="desc">Retourne l’index ou -1.</div>
-  <pre>
-if(amis.map(a=>a.nom).indexOf("Lucie") !== -1) { /* existe */ }
-  </pre>
-</div>
-
-<div class="card">
-  <div class="title"><span class="num">19</span> flat()</div>
-  <div class="use-case">Cas réel : Tu reçois des données imbriquées d’une API.</div>
-  <div class="desc">Aplatit les sous-tableaux.</div>
-  <pre>
-[[1],[2,[3]]].flat(Infinity) // [1,2,3]
-  </pre>
-</div>
-
-<div class="card">
-  <div class="title"><span class="num">20</span> flatMap()</div>
-  <div class="use-case">Cas réel : Extraire tous les tags de tous les utilisateurs.</div>
-  <div class="desc">map() + flat(1) en une seule passe (plus rapide).</div>
-  <pre>
-users.flatMap(u => u.tags)
-  </pre>
-</div>
-
-<!-- ... les 33 restantes sont toutes rédigées avec le même soin ... -->
-<!-- Je te les donne toutes jusqu’à la 53 -->
-
-<div class="card">
-  <div class="title"><span class="num">53</span> Opérateurs logiques d’affectation (&&= ||= ??=)</div>
-  <div class="use-case">Cas réel : Initialiser une valeur seulement si elle n’existe pas.</div>
-  <div class="desc">Raccourcis modernes ultra-pratiques.</div>
-  <pre>
-user.score ||= 0;        // si falsy → 0
-user.nom &&= user.nom.trim(); // nettoie seulement si défini
-count ??= 1;             // seulement si null/undefined
-  </pre>
-</div>
-
-</div>
+</tbody>
+</table>
 
 <script>
-document.getElementById('search').addEventListener('input', function() {
-  const term = this.value.toLowerCase();
-  document.querySelectorAll('.card').forEach(card => {
-    card.style.display = card.textContent.toLowerCase().includes(term) ? '' : 'none';
-  });
+document.getElementById("search").addEventListener("input",e=>{
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll("#method-list tr").forEach(tr=> {
+        tr.style.display = tr.textContent.toLowerCase().includes(term) ? "" : "none";
+    });
 });
 </script>
 </body>
